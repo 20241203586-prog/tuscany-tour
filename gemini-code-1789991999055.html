@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食美酒 | Welcome to Tuscany</title>
+    <style>
+        :root {
+            --bg-cream: #FDFBF7;
+            --bg-khaki: #EFEBE4;
+            --text-dark: #2C221E;
+            --text-muted: #6B5E55;
+            --accent-warm: #8C6A53;
+            --accent-terracotta: #C87A57;
+            --white-glass: rgba(253, 251, 247, 0.9);
+            --shadow-soft: 0 10px 30px rgba(44, 34, 30, 0.05);
+            --shadow-hover: 0 15px 35px rgba(44, 34, 30, 0.1);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Playfair Display", "Georgia", "PingFang SC", "Microsoft YaHei", serif; background-color: var(--bg-cream); color: var(--text-dark); line-height: 1.8; }
+
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: var(--white-glass); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .nav-logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; color: var(--text-dark); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.95rem; position: relative; padding-bottom: 4px; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background-color: var(--accent-terracotta); transition: var(--transition-smooth); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        .page-header { padding: 10rem 10% 4rem; background-color: var(--bg-khaki); text-align: center; }
+        .page-title { font-size: 2.8rem; font-weight: 400; margin-bottom: 0.5rem; }
+        .page-subtitle { font-size: 1rem; color: var(--text-muted); letter-spacing: 2px; }
+
+        .section { padding: 5rem 10%; }
+        .food-flex { display: flex; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+        .food-img { flex: 1; border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-soft); }
+        .food-img img { width: 100%; height: 320px; object-fit: cover; transition: var(--transition-smooth); }
+        .food-img img:hover { transform: scale(1.03); }
+        .food-text { flex: 1; }
+        .food-text h3 { font-size: 1.6rem; color: var(--accent-warm); margin-bottom: 1rem; }
+        .food-text p { color: var(--text-muted); }
+
+        .footer { background-color: var(--text-dark); color: var(--bg-khaki); padding: 4rem 10% 2rem; text-align: center; }
+        .footer-tagline { font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 2rem; }
+        .footer-divider { width: 60px; height: 1px; background-color: var(--accent-warm); margin: 0 auto 2rem; opacity: 0.5; }
+        .footer-copy { font-size: 0.85rem; color: rgba(239, 235, 228, 0.6); }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .food-flex { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">TUSCANY</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="overview.html">网页概览</a></li>
+            <li><a href="cities.html">游览路线</a></li>
+            <li><a href="art.html">艺术文化</a></li>
+            <li><a href="food.html" class="active">美食美酒</a></li>
+            <li><a href="events.html">特色活动</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">美食美酒</h1>
+        <p class="page-subtitle">Wine & Culinary Delights</p>
+    </header>
+
+    <section class="section">
+        <div class="food-flex fade-in">
+            <div class="food-img">
+                <!-- [IMAGE PLACEHOLDER] 建议尺寸 800x600，红酒与葡萄园 -->
+                <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=800&auto=format&fit=crop" alt="Wine Tasting">
+            </div>
+            <div class="food-text">
+                <h3>基安蒂红酒 (Chianti Classico)</h3>
+                <p>沉醉于黑公鸡标志下的珍酿。独特的桑娇维塞 (Sangiovese) 葡萄品种，赋予了基安蒂红酒浓郁的紫罗兰花香与柔和的单宁质感。</p>
+            </div>
+        </div>
+
+        <div class="food-flex fade-in">
+            <div class="food-text">
+                <h3>佛罗伦萨T骨牛排 (Bistecca alla Fiorentina)</h3>
+                <p>精选奎宁牛 (Chianina) 的腰肉，采用木炭炽烤，外焦里嫩，撒上粗盐与特级初榨橄榄油，呈现食材最原始自然的美味。</p>
+            </div>
+            <div class="food-img">
+                <!-- [IMAGE PLACEHOLDER] 建议尺寸 800x600，传统意式美食 -->
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" alt="Florentine Steak">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-tagline">Tuscany — Where time stands still.</p>
+        <div class="footer-divider"></div>
+        <p class="footer-copy">&copy; 2026 Welcome to Tuscany. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游览路线 | Welcome to Tuscany</title>
+    <style>
+        :root {
+            --bg-cream: #FDFBF7;
+            --bg-khaki: #EFEBE4;
+            --text-dark: #2C221E;
+            --text-muted: #6B5E55;
+            --accent-warm: #8C6A53;
+            --accent-terracotta: #C87A57;
+            --white-glass: rgba(253, 251, 247, 0.9);
+            --shadow-soft: 0 10px 30px rgba(44, 34, 30, 0.05);
+            --shadow-hover: 0 15px 35px rgba(44, 34, 30, 0.1);
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Playfair Display", "Georgia", "PingFang SC", "Microsoft YaHei", serif; background-color: var(--bg-cream); color: var(--text-dark); line-height: 1.8; }
+
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: var(--white-glass); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .nav-logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; color: var(--text-dark); text-decoration: none; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.95rem; position: relative; padding-bottom: 4px; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background-color: var(--accent-terracotta); transition: var(--transition-smooth); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+        .page-header { padding: 10rem 10% 4rem; background-color: var(--bg-khaki); text-align: center; }
+        .page-title { font-size: 2.8rem; font-weight: 400; margin-bottom: 0.5rem; }
+        .page-subtitle { font-size: 1rem; color: var(--text-muted); letter-spacing: 2px; }
+
+        .section { padding: 5rem 10%; }
+        .route-item { display: flex; gap: 4rem; align-items: center; margin-bottom: 5rem; }
+        .route-item:nth-child(even) { flex-direction: row-reverse; }
+        .route-img { flex: 1; overflow: hidden; border-radius: 4px; box-shadow: var(--shadow-soft); }
+        .route-img img { width: 100%; height: 350px; object-fit: cover; transition: var(--transition-smooth); }
+        .route-img img:hover { transform: scale(1.03); }
+        .route-text { flex: 1; }
+        .route-text h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--accent-warm); }
+        .route-text p { color: var(--text-muted); }
+
+        .footer { background-color: var(--text-dark); color: var(--bg-khaki); padding: 4rem 10% 2rem; text-align: center; }
+        .footer-tagline { font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 2rem; }
+        .footer-divider { width: 60px; height: 1px; background-color: var(--accent-warm); margin: 0 auto 2rem; opacity: 0.5; }
+        .footer-copy { font-size: 0.85rem; color: rgba(239, 235, 228, 0.6); }
+
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .route-item, .route-item:nth-child(even) { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">TUSCANY</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="overview.html">网页概览</a></li>
+            <li><a href="cities.html" class="active">游览路线</a></li>
+            <li><a href="art.html">艺术文化</a></li>
+            <li><a href="food.html">美食美酒</a></li>
+            <li><a href="events.html">特色活动</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1 class="page-title">游览路线</h1>
+        <p class="page-subtitle">Itineraries & Ancient Towns</p>
+    </header>
+
+    <section class="section">
+        <div class="route-item fade-in">
+            <div class="route-img">
+                <!-- [IMAGE PLACEHOLDER] 建议尺寸 800x600，佛罗伦萨全景 -->
+                <img src="https://images.unsplash.com/photo-1543429776-2782fc8e1acd?q=80&w=800&auto=format&fit=crop" alt="Florence">
+            </div>
+            <div class="route-text">
+                <h3>佛罗伦萨 (Florence) — 艺术之心</h3>
+                <p>作为文艺复兴的发源地，百花圣母大教堂的穹顶在阳光下熠熠生辉。漫步于老桥之上，穿梭于乌菲兹美术馆的长廊中，感受无处不在的优雅人文底蕴。</p>
+            </div>
+        </div>
+
+        <div class="route-item fade-in">
+            <div class="route-img">
+                <!-- [IMAGE PLACEHOLDER] 建议尺寸 800x600，锡耶纳大广场 -->
+                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=800&auto=format&fit=crop" alt="Siena">
+            </div>
+            <div class="route-text">
+                <h3>锡耶纳 (Siena) — 中世纪风情</h3>
+                <p>贝壳状 田野广场 (Piazza del Campo) 见证了数百年的辉煌。这里保留着完整的古城格局，穿行于砖红色的巷弄间，仿佛时光就此倒流。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-tagline">Tuscany — Where time stands still.</p>
+        <div class="footer-divider"></div>
+        <p class="footer-copy">&copy; 2026 Welcome to Tuscany. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
