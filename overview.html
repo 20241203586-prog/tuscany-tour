@@ -3,56 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网站总览 | Welcome to Tuscany</title>
+    <title>网站总览 - 托斯卡纳</title>
     <style>
-        :root {
-            --bg-cream: #FDFBF7;
-            --bg-khaki: #EFEBE4;
-            --text-dark: #2C221E;
-            --text-muted: #6B5E55;
-            --accent-warm: #8C6A53;
-            --accent-terracotta: #C87A57;
-            --white-glass: rgba(253, 251, 247, 0.9);
-            --shadow-soft: 0 10px 30px rgba(44, 34, 30, 0.05);
-            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
+        /* 继承主样式基础 */
+        :root { --bg-cream: #fbf8f3; --bg-khaki: #f4eee0; --text-dark: #3a322d; --text-muted: #726659; --accent-brown: #8c6d53; --accent-terracotta: #ab6b51; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background: var(--bg-cream); color: var(--text-dark); font-family: "Georgia", "Noto Serif SC", serif; line-height: 1.8; }
+        .header-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(251,248,243,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-logo { font-weight: bold; color: var(--accent-brown); text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); }
+        .nav-links a.active { color: var(--accent-terracotta); }
+        
+        .main-container { padding: 140px 20px 80px 20px; max-width: 1000px; margin: 0 auto; }
+        .intro-box { background: var(--bg-khaki); padding: 50px; border-radius: 4px; text-align: center; margin-bottom: 50px; }
+        .intro-chapter { font-size: 0.9rem; color: var(--accent-terracotta); letter-spacing: 1.5px; }
+        .intro-title { font-size: 1.8rem; margin: 15px 0; font-weight: normal; }
+        .intro-tags { color: var(--accent-brown); letter-spacing: 2px; font-size: 1.1rem; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Playfair Display", "Georgia", "PingFang SC", "Microsoft YaHei", serif; background-color: var(--bg-cream); color: var(--text-dark); line-height: 1.8; }
+        .poetic-section { text-align: center; margin: 60px 0; font-size: 1.2rem; color: var(--text-muted); }
 
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: var(--white-glass); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
-        .nav-logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--text-dark); text-decoration: none; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.95rem; position: relative; padding-bottom: 4px; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background-color: var(--accent-terracotta); transition: var(--transition); }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-
-        .header-section { padding: 9rem 10% 4rem; background-color: var(--bg-khaki); text-align: center; }
-        .chapter-title { font-size: 1rem; letter-spacing: 3px; color: var(--accent-warm); text-transform: uppercase; margin-bottom: 0.5rem; }
-        .main-title { font-size: 2.2rem; font-weight: 400; color: var(--text-dark); margin-bottom: 1rem; }
-        .sub-p { font-size: 1.1rem; color: var(--text-muted); }
-
-        .section { padding: 5rem 10%; max-width: 1200px; margin: 0 auto; }
-        .grid-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 2rem; }
-        .card { background: #FFF; border-radius: 4px; padding: 2.5rem; box-shadow: var(--shadow-soft); transition: var(--transition); border: 1px solid rgba(0,0,0,0.03); }
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { font-size: 1.5rem; color: var(--accent-warm); margin-bottom: 0.8rem; }
-        .card p { color: var(--text-muted); font-size: 0.98rem; }
-
-        .footer { background-color: var(--text-dark); color: var(--bg-khaki); padding: 4rem 10% 2rem; text-align: center; }
-        .footer-tagline { font-size: 1.4rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 1.5rem; }
-        .footer-divider { width: 50px; height: 1px; background-color: var(--accent-warm); margin: 0 auto 1.5rem; opacity: 0.5; }
-        .footer-copy { font-size: 0.85rem; color: rgba(239, 235, 228, 0.6); }
-
-        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 768px) { .grid-cards { grid-template-columns: 1fr; } }
+        .footer { background-color: var(--bg-khaki); padding: 30px; text-align: center; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a href="index.html" class="nav-logo">Welcome to Tuscany</a>
+    <nav class="header-nav">
+        <a href="index.html" class="nav-logo">Tuscany</a>
         <ul class="nav-links">
             <li><a href="index.html">首页</a></li>
             <li><a href="overview.html" class="active">网站总览</a></li>
@@ -63,56 +39,20 @@
         </ul>
     </nav>
 
-    <header class="header-section">
-        <p class="chapter-title">Chapter 01:</p>
-        <h1 class="main-title">四大板块，带你读懂托斯卡纳的路线、味道与风光</h1>
-        <p class="sub-p">路线 · 饮食 · 文化 · 活动</p>
-    </header>
-
-    <section class="section">
-        <div style="text-align: center; margin-bottom: 3rem;" class="fade-in">
-            <h2 style="font-size: 1.8rem; font-weight: 400; color: var(--text-dark);">四季流转，邀你邂逅托斯卡纳的晴日、山海与诗意。</h2>
+    <main class="main-container">
+        <div class="intro-box">
+            <p class="intro-chapter">Chapter 01:</p>
+            <h2 class="intro-title">四大板块，带你读懂托斯卡纳的路线、味道与风光</h2>
+            <p class="intro-tags">路线·饮食·文化·活动</p>
         </div>
 
-        <div class="grid-cards">
-            <a href="cities.html" style="text-decoration: none; color: inherit;">
-                <div class="card fade-in">
-                    <h3>旅行行程</h3>
-                    <p>串联内陆丘陵与地中海海岸，古道漫步与经典观光路线。</p>
-                </div>
-            </a>
-            <a href="art.html" style="text-decoration: none; color: inherit;">
-                <div class="card fade-in">
-                    <h3>文化艺术</h3>
-                    <p>文艺复兴摇篮，大卫雕像与传奇大师米开朗基罗的艺术遗产。</p>
-                </div>
-            </a>
-            <a href="food.html" style="text-decoration: none; color: inherit;">
-                <div class="card fade-in">
-                    <h3>美食美酒</h3>
-                    <p>质朴本真风味，丁骨牛排与基安蒂等丘陵佳酿的绝妙碰撞。</p>
-                </div>
-            </a>
-            <a href="events.html" style="text-decoration: none; color: inherit;">
-                <div class="card fade-in">
-                    <h3>特色活动</h3>
-                    <p>限定盛会，复古骑行、山野音乐会与酒神节庆传统。</p>
-                </div>
-            </a>
+        <div class="poetic-section">
+            <p>四季流转，<br>邀你邂逅托斯卡纳的晴日、<br>山海与诗意。</p>
         </div>
-    </section>
+    </main>
 
     <footer class="footer">
-        <p class="footer-tagline">Tuscany — Where time stands still.</p>
-        <div class="footer-divider"></div>
-        <p class="footer-copy">&copy; 2026 Welcome to Tuscany. All Rights Reserved.</p>
+        <p>TUSCANY • 网站总览</p>
     </footer>
-
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
