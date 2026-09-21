@@ -1,107 +1,131 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文化艺术 - 托斯卡纳</title>
-    <style>
-        :root { --bg-cream: #fbf8f3; --bg-khaki: #f4eee0; --text-dark: #3a322d; --text-muted: #726659; --accent-brown: #8c6d53; --accent-terracotta: #ab6b51; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { background: var(--bg-cream); color: var(--text-dark); font-family: "Georgia", "Noto Serif SC", serif; line-height: 1.8; }
-        
-        .header-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(251,248,243,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-logo { font-weight: bold; color: var(--accent-brown); text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); }
-        .nav-links a.active { color: var(--accent-terracotta); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>艺术文化 | 托斯卡纳 Welcome to Tuscany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:      #F7F1E4;
+  --cream-deep: #EFE6D2;
+  --khaki:      #D8C6A0;
+  --ink:        #3C3223;
+  --ink-soft:   #766B54;
+  --brand-red:  #C1594E;
+  --gold:       #A97F45;
+  --white:      #FFFDF8;
+  --radius:     6px;
+  --nav-h:      74px;
+  --shadow-soft: 0 6px 20px rgba(60,50,35,0.08);
+  --shadow-deep: 0 16px 36px rgba(60,50,35,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: "Noto Sans SC", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.8;
+  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAJ1A4QDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAQIAAwQFBv/EADYQAAEEAQMDAwMDAwQDAQEBAQEAAhEhMRJBUQNhcSKBkQQyoROxwULR4QVS8PEUI2JyM4IV/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAjEQEBAQADAQABBQEBAQAAAAAAARECITFBUQMSMmFxQiIE/9oADAMBADrawing=");
+}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section{padding:100px 0 80px;}
 
-        .container { padding: 120px 20px 60px 20px; max-width: 1000px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .sub-tag { color: var(--accent-terracotta); font-size: 0.9rem; letter-spacing: 2px; }
+.header{
+  height: var(--nav-h); position: fixed; top:0; left:0; right:0; z-index: 1000;
+  background: rgba(247, 241, 228, 0.94); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--khaki);
+}
+.header .container{display: flex; justify-content: space-between; align-items: center; height: 100%;}
+.logo{font-size: 20px; font-weight: 700; font-family: 'Noto Serif SC', serif;}
+.nav-list{display: flex; gap: 28px;}
+.nav-link{font-size: 15px; transition: color 0.3s;}
+.nav-link:hover, .nav-link.active{color: var(--brand-red);}
+.mobile-toggle{display: none; font-size: 24px; background: none; border: none;}
 
-        .intro-text { font-size: 1.05rem; margin-bottom: 40px; text-align: justify; }
-        
-        .art-card { background: var(--bg-khaki); padding: 35px; border-radius: 4px; margin-bottom: 40px; display: flex; gap: 30px; align-items: center; }
-        .art-card-img { width: 220px; height: 260px; background: #dcd0bf; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid var(--accent-brown); }
-        .art-card-img img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .facts-list { margin-left: 20px; margin-top: 10px; }
-        .facts-list li { margin-bottom: 8px; }
+.page-title{font-size: 36px; text-align: center; margin-bottom: 12px; font-family: 'Noto Serif SC', serif;}
+.subtitle-line{width: 40px; height: 2px; background: var(--gold); margin: 12px auto 40px;}
 
-        .footer { background-color: var(--bg-khaki); padding: 30px; text-align: center; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); }
+.art-block{
+  background: var(--white);
+  border: 1px solid var(--khaki);
+  border-radius: var(--radius);
+  padding: 36px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-soft);
+}
+.art-block-title{font-size: 22px; margin-bottom: 12px; font-family: 'Noto Serif SC', serif; color: var(--gold);}
 
-        @media (max-width: 768px) {
-            .art-card { flex-direction: column; }
-            .art-card-img { width: 100%; height: 200px; }
-        }
-    </style>
+.footer{background: var(--ink); color: var(--cream); padding: 50px 0; text-align: center; font-size: 14px;}
+.footer-line{width: 60px; height: 1px; background: var(--gold); margin: 20px auto; opacity: 0.5;}
+
+.fade-in-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .mobile-toggle{ display: block; }
+  .nav-list{ display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--cream); flex-direction: column; padding: 20px; gap: 16px; border-bottom: 1px solid var(--khaki); }
+  .nav-list.active{ display: flex; }
+}
+</style>
 </head>
 <body>
-    <nav class="header-nav">
-        <a href="index.html" class="nav-logo">Tuscany</a>
-        <ul class="nav-links">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="overview.html">网站总览</a></li>
-            <li><a href="cities.html">旅行行程</a></li>
-            <li><a href="art.html" class="active">文化艺术</a></li>
-            <li><a href="food.html">美食美酒</a></li>
-            <li><a href="events.html">特色活动</a></li>
-        </ul>
-    </nav>
-
+  <header class="header">
     <div class="container">
-        <div class="section-header">
-            <span class="sub-tag">世界独一无二的遗产</span>
-            <h2>艺术与文化</h2>
-        </div>
-
-        <p class="intro-text">
-            托斯卡纳,是意大利文艺复兴的摇篮。从古老的伊特鲁里亚文明,到璀璨的文艺复兴盛世,这片土地孕育了无数艺术巨匠与传世杰作。这里留存着宏伟的教堂建筑、震撼的雕塑珍品,也藏着古朴的手工技艺与鲜活的民俗风情。
-        </p>
-
-        <!-- 米开朗基罗《大卫》板块 -->
-        <div class="art-card">
-            <!-- 图像占位符标记: images/david.jpg (大卫雕像图片) -->
-            <div class="art-card-img">
-                <img src="images/david.jpg" alt="米开朗基罗大卫雕像 [图片占位]">
-            </div>
-            <div>
-                <h3>《大卫》————鲜为人知的事实!</h3>
-                <ul class="facts-list">
-                    <li>一块遭前人弃置的卡拉拉大理石</li>
-                    <li>整座塑像高5.17米</li>
-                    <li>大卫为左撇子,投石器隐于肩头。</li>
-                    <li>雕像头部和右手特意放大,适配高处仰视</li>
-                </ul>
-                <p style="margin-top: 15px;">米开朗基罗的《大卫》是盛期文艺复兴雕塑的巅峰之作,这件大理石杰作融汇古典美学与人文精神,以精准写实的人体刻画,歌颂人的力量与尊严。它不仅是佛罗伦萨自由与勇气的象征,更是人类艺术史上不朽的丰碑,至今仍震撼着每一位到访学院美术馆的观者。</p>
-            </div>
-        </div>
-
-        <!-- 艺术家介绍 -->
-        <div style="background: #ffffff; padding: 30px; border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); margin-bottom: 40px;">
-            <h3 style="color: var(--accent-brown);">米开朗基罗 MICHELANGELO BUONARROTI</h3>
-            <p style="color: var(--accent-terracotta); font-size: 0.9rem; margin-bottom: 10px;">生于托斯卡纳 | 雕塑家·画家·建筑师·诗人</p>
-            <p><strong>托斯卡纳的土地孕育了这位传奇艺术家,他的传世杰作,至今仍静静等待全球游客前来瞻仰。</strong></p>
-            <p>米开朗基罗诞生于托斯卡纳的卡普雷塞小镇,是盛期文艺复兴最具传奇色彩的全能艺术大师。在他眼中,大理石内本就藏着完整形象,艺术家的工作,只是凿去多余石料,释放石材里沉睡的生命。</p>
-            <p>26岁的他,在佛罗伦萨耗时三年,雕琢出震撼世界的《大卫》雕像。除这件名作外,西斯廷礼拜堂天顶画《创世纪》、《哀悼基督》、圣彼得大教堂穹顶,都是值得艺术爱好者奔赴意大利打卡的传世瑰宝。</p>
-        </div>
-
-        <!-- 托斯卡纳红酒小窗 -->
-        <div class="art-card">
-            <!-- 图像占位符标记: images/wine-window.jpg (托斯卡纳红酒小窗图片) -->
-            <div class="art-card-img">
-                <img src="images/wine-window.jpg" alt="托斯卡纳红酒小窗 Buchette del Vino [图片占位]">
-            </div>
-            <div>
-                <h3>托斯卡纳红酒小窗</h3>
-                <p>隐藏在佛罗伦萨老建筑墙面上的红酒小窗 Buchette del Vino,是属于托斯卡纳的浪漫印记。早在16世纪美第奇时代,当地贵族为直接售卖庄园出产的葡萄酒,在宫殿一楼墙面开小巧石拱窗,配上翻盖木门,跳过酒商赚取免税收益。</p>
-                <p style="margin-top:10px;">1630年黑死病肆虐,这小小的窗口意外成为最早的无接触交易通道: 外递钱,国内递酒,隔绝人群。历经岁月,大部分酒窗被封藏,少数重新启用,到访者轻敲窗铃,不必进店,站在石板街道上,便能收获一杯醇厚的基安蒂红酒,在一口托斯卡纳酒香里触摸文艺复兴的市井烟火。</p>
-            </div>
-        </div>
+      <a href="index.html" class="logo">Tuscany | 托斯卡纳</a>
+      <button class="mobile-toggle" id="mobileToggle">☰</button>
+      <nav>
+        <ul class="nav-list" id="navList">
+          <li><a href="index.html" class="nav-link">首页</a></li>
+          <li><a href="overview.html" class="nav-link">网页概览</a></li>
+          <li><a href="cities.html" class="nav-link">游览路线</a></li>
+          <li><a href="art.html" class="nav-link active">艺术文化</a></li>
+          <li><a href="food.html" class="nav-link">美食美酒</a></li>
+          <li><a href="events.html" class="nav-link">特色活动</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <footer class="footer">
-        <p>TUSCANY • 文化艺术</p>
-    </footer>
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title fade-in-up">艺术文化</h1>
+      <div class="subtitle-line fade-in-up"></div>
+
+      <div class="art-block fade-in-up">
+        <h2 class="art-block-title">文艺复兴的辉煌烙印</h2>
+        <p>托斯卡纳是文艺复兴运动的核心发源地。美第奇家族在此对艺术与科学的慷慨赞助，孕育了达芬奇、米开朗基罗、波提切利等无数闪耀人类历史的巨匠。</p>
+      </div>
+
+      <div class="art-block fade-in-up">
+        <h2 class="art-block-title">建筑与博物馆殿堂</h2>
+        <p>乌菲兹美术馆展示着《维纳斯的诞生》等无数杰作；而圣母百花大教堂的巨大穹顶，至今仍是建筑学史上的奇迹工程。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="serif-font" style="font-size: 16px;">Tuscany | 慢生活与艺术之乡</p>
+      <div class="footer-line"></div>
+      <p>&copy; 2026 托斯卡纳 Welcome to Tuscany. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('mobileToggle').addEventListener('click', () => {
+        document.getElementById('navList').classList.toggle('active');
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
