@@ -1,144 +1,408 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>托斯卡纳 | 你的意大利之旅从这里开始</title>
-    <style>
-        /* ================= 托斯卡纳全站通用样式 (奶油/卡其/复古棕) ================= */
-        :root {
-            --bg-cream: #fbf8f3;
-            --bg-khaki: #f4eee0;
-            --text-dark: #3a322d;
-            --text-muted: #726659;
-            --accent-brown: #8c6d53;
-            --accent-terracotta: #ab6b51;
-            --card-shadow: 0 6px 18px rgba(58, 50, 45, 0.06);
-            --hover-shadow: 0 12px 28px rgba(58, 50, 45, 0.12);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>托斯卡纳 Welcome to Tuscany | 艺术、田园、美酒与慢生活</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-family: "Georgia", "Noto Serif SC", serif; }
-        body { background-color: var(--bg-cream); color: var(--text-dark); line-height: 1.8; }
+<!-- 字体引入 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        /* 全局导航栏 */
-        .header-nav {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            transition: all 0.4s ease; padding: 20px 40px;
-            display: flex; justify-content: space-between; align-items: center;
-            background: transparent;
-        }
-        .header-nav.scrolled {
-            background: rgba(251, 248, 243, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 12px 40px;
-        }
-        .nav-logo { font-size: 1.2rem; font-weight: bold; color: var(--accent-brown); text-decoration: none; letter-spacing: 1px; }
-        .nav-links { display: flex; gap: 24px; list-style: none; }
-        .nav-links a {
-            text-decoration: none; color: var(--text-dark); font-size: 0.95rem;
-            transition: color 0.3s ease; padding: 4px 8px; border-radius: 4px;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-terracotta); background-color: rgba(171, 107, 81, 0.08); }
+<style>
+/* ==========================================================================
+   全站统一 CSS 变量与复古调性
+   ========================================================================== */
+:root {
+  --cream:      #F7F1E4;   /* 主背景米白 */
+  --cream-deep: #EFE6D2;   /* 区块深米色 */
+  --khaki:      #D8C6A0;   /* 浅卡其 */
+  --khaki-deep: #C6AD80;   /* 边框卡其 */
+  --ink:        #3C3223;   /* 主文字深棕黑 */
+  --ink-soft:   #766B54;   /* 次要文字棕灰 */
+  --brand-red:  #C1594E;   /* 点缀砖红 */
+  --gold:       #A97F45;   /* 装饰古铜金 */
+  --white:      #FFFDF8;
+  --radius:     6px;
+  --nav-h:      74px;
+  --shadow-soft: 0 6px 20px rgba(60,50,35,0.08);
+  --shadow-deep: 0 16px 36px rgba(60,50,35,0.15);
+}
 
-        /* 移动端菜单按钮 */
-        .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-dark); cursor: pointer; }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family: "Noto Sans SC", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.8;
+  overflow-x: hidden;
+  /* 柔和米白纹理背景 */
+  background-image: url("data:image/jpeg;base64,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");
+  background-repeat: repeat;
+}
 
-        /* HERO Section */
-        .hero-section {
-            height: 100vh; position: relative; display: flex; align-items: center; justify-content: center;
-            text-align: center; overflow: hidden; background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('images/hero-bg.jpg') center/cover no-repeat;
-            color: #ffffff;
-        }
-        .hero-content { opacity: 0; transform: translateY(20px); animation: fadeInUp 1.2s forwards ease-out 0.2s; max-width: 800px; padding: 0 20px; }
-        .hero-subtitle { font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; opacity: 0.9; }
-        .hero-title { font-size: 3.5rem; font-weight: normal; margin-bottom: 16px; font-family: "Georgia", serif; }
-        .hero-desc { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
-        .btn-primary {
-            display: inline-block; padding: 12px 36px; border: 1px solid #ffffff; color: #ffffff;
-            text-decoration: none; transition: all 0.3s ease; letter-spacing: 1px; background: rgba(255,255,255,0.1);
-        }
-        .btn-primary:hover { background: #ffffff; color: var(--text-dark); }
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section{padding:90px 0;}
 
-        /* 统一通用版块 */
-        .section-container { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-subtitle { color: var(--accent-terracotta); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
-        .section-title { font-size: 2.2rem; color: var(--text-dark); margin-top: 8px; font-weight: normal; }
+/* 字体分类 */
+.serif-font, h1, h2, h3{
+  font-family: 'Noto Serif SC', serif;
+  color: var(--ink);
+}
 
-        /* 视口渐入动画类 */
-        .reveal { opacity: 0; transform: translateY(25px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+/* ==========================================================================
+   导航栏 Header（柔和切换 + 移动端适配）
+   ========================================================================== */
+.header{
+  height: var(--nav-h);
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 1000;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+.header.scrolled{
+  background: rgba(247, 241, 228, 0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--khaki);
+  box-shadow: 0 4px 15px rgba(60,50,35,0.05);
+}
+.header .container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.logo{
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.nav-list{
+  display: flex;
+  gap: 28px;
+}
+.nav-link{
+  font-size: 15px;
+  color: var(--ink);
+  transition: color 0.3s;
+  position: relative;
+  padding: 4px 0;
+}
+.nav-link:hover, .nav-link.active{
+  color: var(--brand-red);
+}
+.nav-link::after{
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 0; height: 2px;
+  background: var(--brand-red);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.nav-link:hover::after, .nav-link.active::after{
+  width: 100%;
+}
 
-        /* Footer */
-        .footer { background-color: var(--bg-khaki); padding: 40px 20px; text-align: center; border-top: 1px solid rgba(140, 109, 83, 0.15); margin-top: 60px; }
-        .footer-line { height: 1px; background: var(--accent-brown); width: 60px; margin: 20px auto; opacity: 0.3; }
-        .footer-text { font-size: 0.85rem; color: var(--text-muted); }
+/* 移动端菜单按钮 */
+.mobile-toggle{
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--ink);
+}
 
-        /* 响应式调整 */
-        @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-cream); flex-direction: column; padding: 20px; box-shadow: 0 10px 10px rgba(0,0,0,0.05); }
-            .nav-links.show { display: flex; }
-            .menu-toggle { display: block; }
-            .hero-title { font-size: 2.3rem; }
-        }
+/* ==========================================================================
+   Hero 首屏视觉区
+   ========================================================================== */
+.hero{
+  padding-top: calc(var(--nav-h) + 60px);
+  padding-bottom: 100px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(239,230,210,0.6) 0%, rgba(247,241,228,1) 100%);
+  border-bottom: 1px solid var(--khaki);
+}
+.hero-subtitle{
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeIn 1s 0.2s forwards ease-out;
+}
+.hero-title{
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  line-height: 1.35;
+  opacity: 0;
+  animation: fadeIn 1s 0.4s forwards ease-out;
+}
+.hero-desc{
+  max-width: 680px;
+  margin: 0 auto 40px;
+  color: var(--ink-soft);
+  font-size: 17px;
+  opacity: 0;
+  animation: fadeIn 1s 0.6s forwards ease-out;
+}
+.btn{
+  display: inline-block;
+  padding: 12px 36px;
+  background: var(--brand-red);
+  color: var(--white);
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  animation: fadeIn 1s 0.8s forwards ease-out;
+}
+.btn:hover{
+  background: #a8483f;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-deep);
+}
 
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-    </style>
+/* ==========================================================================
+   卡片与网格系统（平滑显示）
+   ========================================================================== */
+.section-title{
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.section-subtitle-line{
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin: 12px auto 40px;
+}
+
+.grid-3{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+}
+
+.card{
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--khaki);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+.card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-deep);
+}
+.card-img-wrapper{
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: var(--cream-deep);
+}
+.card-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+.card:hover .card-img{
+  transform: scale(1.04);
+  filter: brightness(1.05);
+}
+.card-body{
+  padding: 24px;
+}
+.card-title{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.card-text{
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+/* 淡入动画 */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   全站 Footer
+   ========================================================================== */
+.footer{
+  background: var(--ink);
+  color: var(--cream);
+  padding: 50px 0;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid var(--khaki-deep);
+}
+.footer-line{
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 20px auto;
+  opacity: 0.5;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+  .hero-title{ font-size: 32px; }
+  .mobile-toggle{ display: block; }
+  .nav-list{
+    display: none;
+    position: absolute;
+    top: var(--nav-h); left: 0; right: 0;
+    background: var(--cream);
+    flex-direction: column;
+    padding: 20px;
+    gap: 16px;
+    border-bottom: 1px solid var(--khaki);
+    box-shadow: var(--shadow-soft);
+  }
+  .nav-list.active{ display: flex; }
+}
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 </head>
 <body>
 
-    <nav class="header-nav" id="mainNav">
-        <a href="index.html" class="nav-logo">Tuscany</a>
-        <button class="menu-toggle" id="menuBtn">☰</button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="index.html" class="active">首页</a></li>
-            <li><a href="overview.html">网站总览</a></li>
-            <li><a href="cities.html">旅行行程</a></li>
-            <li><a href="art.html">文化艺术</a></li>
-            <li><a href="food.html">美食美酒</a></li>
-            <li><a href="events.html">特色活动</a></li>
+  <!-- 全站固定导航 -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo serif-font">Tuscany | 托斯卡纳</a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">☰</button>
+      <nav>
+        <ul class="nav-list" id="navList">
+          <li><a href="index.html" class="nav-link active">首页</a></li>
+          <li><a href="overview.html" class="nav-link">网页概览</a></li>
+          <li><a href="cities.html" class="nav-link">游览路线</a></li>
+          <li><a href="art.html" class="nav-link">艺术文化</a></li>
+          <li><a href="food.html" class="nav-link">美食美酒</a></li>
+          <li><a href="events.html" class="nav-link">特色活动</a></li>
         </ul>
-    </nav>
+      </nav>
+    </div>
+  </header>
 
-    <!-- HERO落地页 -->
-    <section class="hero-section">
-        <!-- 图像占位符标记: images/hero-bg.jpg (大背景图) -->
-        <div class="hero-content">
-            <p class="hero-subtitle">Welcome to Tuscany</p>
-            <h1 class="hero-title">托斯卡纳</h1>
-            <p class="hero-desc">艺术、田园、美酒与慢生活，你的意大利之旅从这里开始</p>
-            <a href="overview.html" class="btn-primary">开始探索</a>
+  <!-- 首屏英雄区 -->
+  <section class="hero">
+    <div class="container">
+      <p class="hero-subtitle">WELCOME TO TUSCANY</p>
+      <h1 class="hero-title serif-font">灵魂深处的意大利田园诗</h1>
+      <p class="hero-desc">在这里，时间仿佛放慢了脚步。连绵起伏的丘陵、古老的丝柏树、沉淀百年的庄园与文艺复兴的艺术余温，共同构筑了这场关于美与慢生活的梦境。</p>
+      <a href="overview.html" class="btn">开启旅程</a>
+    </div>
+  </section>
+
+  <!-- 核心展示卡片 -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title serif-font fade-in-up">艺术与田园的交织</h2>
+      <div class="section-subtitle-line fade-in-up"></div>
+      
+      <div class="grid-3">
+        <!-- 卡片 1 -->
+        <div class="card fade-in-up">
+          <div class="card-img-wrapper">
+            <!-- 图片占位说明：主页-田园风光图 -->
+            <img src="https://images.unsplash.com/photo-1541370976299-4d24ebbcbe0c?auto=format&fit=crop&w=800&q=80" alt="托斯卡纳田园与丝柏树" class="card-img">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title serif-font">经典田园风光</h3>
+            <p class="card-text">奥尔恰谷（Val d'Orcia）起伏的绿色丘陵与直耸入云的丝柏树，构成世界遗产级别的自然画卷。</p>
+          </div>
         </div>
-    </section>
 
-    <footer class="footer">
-        <p style="letter-spacing: 2px; font-size: 0.95rem;">TUSCANY • 艺术、田园、美酒与慢生活</p>
-        <div class="footer-line"></div>
-        <p class="footer-text">© 托斯卡纳文旅概览 static site. All Rights Reserved.</p>
-    </footer>
+        <!-- 卡片 2 -->
+        <div class="card fade-in-up">
+          <div class="card-img-wrapper">
+            <!-- 图片占位说明：主页-文艺复兴图 -->
+            <img src="https://images.unsplash.com/photo-1534445867742-43195f401b6c?auto=format&fit=crop&w=800&q=80" alt="佛罗伦萨全景" class="card-img">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title serif-font">文艺复兴摇篮</h3>
+            <p class="card-text">佛罗伦萨的街头巷尾沉淀着达芬奇、米开朗基罗与美第奇家族的辉煌艺术遗产。</p>
+          </div>
+        </div>
 
-    <script>
-        // 导航滚动效果与响应式切换
-        const nav = document.getElementById('mainNav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) { nav.classList.add('scrolled'); }
-            else { nav.classList.remove('scrolled'); }
+        <!-- 卡片 3 -->
+        <div class="card fade-in-up">
+          <div class="card-img-wrapper">
+            <!-- 图片占位说明：主页-酒庄图 -->
+            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="托斯卡纳红酒与葡萄园" class="card-img">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title serif-font">古典基安蒂酒香</h3>
+            <p class="card-text">探访百年酒庄，品尝著名的 Chianti Classico，让舌尖感受托斯卡纳阳光与泥土的赠予。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 全站 Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="serif-font" style="font-size: 16px;">Tuscany | 慢生活与艺术之乡</p>
+      <div class="footer-line"></div>
+      <p>&copy; 2026 托斯卡纳 Welcome to Tuscany. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 原生 JS：导航滚动与滚动淡入动效 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 导航滚动效果
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 30) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+
+      // 移动端菜单切换
+      const mobileToggle = document.getElementById('mobileToggle');
+      const navList = document.getElementById('navList');
+      mobileToggle.addEventListener('click', () => {
+        navList.classList.toggle('active');
+      });
+
+      // 滚动淡入观察器
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
         });
+      }, { threshold: 0.1 });
 
-        document.getElementById('menuBtn').addEventListener('click', () => {
-            document.getElementById('navLinks').classList.toggle('show');
-        });
-
-        // 视口淡入观察器
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) { entry.target.classList.add('active'); }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+      document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
