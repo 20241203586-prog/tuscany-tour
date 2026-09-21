@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Journey Begins Here | 托斯卡纳之旅</title>
+    <title>首页 | Welcome to Tuscany</title>
     <style>
-        /* ================= 全局基础样式 ================= */
         :root {
             --bg-cream: #FDFBF7;
             --bg-khaki: #EFEBE4;
@@ -13,23 +12,14 @@
             --text-muted: #6B5E55;
             --accent-warm: #8C6A53;
             --accent-terracotta: #C87A57;
-            --white-glass: rgba(253, 251, 247, 0.85);
+            --white-glass: rgba(253, 251, 247, 0.88);
             --shadow-soft: 0 10px 30px rgba(44, 34, 30, 0.05);
-            --shadow-hover: 0 15px 35px rgba(44, 34, 30, 0.1);
-            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --shadow-hover: 0 15px 35px rgba(44, 34, 30, 0.12);
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
         body {
             font-family: "Playfair Display", "Georgia", "PingFang SC", "Microsoft YaHei", serif;
             background-color: var(--bg-cream);
@@ -38,440 +28,87 @@
             overflow-x: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition-smooth);
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition-smooth);
-        }
-
-        /* ================= 共享组件：导航栏 ================= */
+        /* 全局共享导航栏 */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition-smooth);
-            background: linear-gradient(180deg, rgba(44,34,30,0.3) 0%, rgba(0,0,0,0) 100%);
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center;
+            transition: var(--transition);
+            background: linear-gradient(180deg, rgba(44,34,30,0.4) 0%, rgba(0,0,0,0) 100%);
         }
-
         .navbar.scrolled {
             background: var(--white-glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             padding: 1rem 5%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
         }
+        .nav-logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: #FFF; text-decoration: none; }
+        .navbar.scrolled .nav-logo { color: var(--text-dark); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.9); text-decoration: none; font-size: 0.95rem; position: relative; padding-bottom: 4px; }
+        .navbar.scrolled .nav-links a { color: var(--text-dark); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background-color: var(--accent-terracotta); transition: var(--transition); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-        .nav-logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #FFF;
-            text-transform: uppercase;
-            transition: var(--transition-smooth);
-        }
-
-        .navbar.scrolled .nav-logo {
-            color: var(--text-dark);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            position: relative;
-            padding-bottom: 4px;
-        }
-
-        .navbar.scrolled .nav-links a {
-            color: var(--text-dark);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--accent-terracotta);
-            transition: var(--transition-smooth);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-        }
-
-        .mobile-toggle span {
-            width: 25px;
-            height: 2px;
-            background-color: #FFF;
-            transition: var(--transition-smooth);
-        }
-
-        .navbar.scrolled .mobile-toggle span {
-            background-color: var(--text-dark);
-        }
-
-        /* ================= Hero 落地页 ================= */
+        /* 首屏 Hero */
         .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 1rem;
-            overflow: hidden;
+            position: relative; height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 0 1rem; overflow: hidden;
         }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.7); transform: scale(1.05); }
+        .hero-content { color: #FFF; max-width: 800px; animation: fadeInBlur 1.2s ease forwards; }
+        .hero-tag { font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; color: var(--bg-khaki); }
+        .hero-title { font-size: 3.5rem; font-weight: 400; margin-bottom: 1.5rem; letter-spacing: 2px; }
+        .hero-desc { font-size: 1.1rem; color: rgba(255,255,255,0.85); margin-bottom: 2.5rem; font-weight: 300; }
+        .btn-start {
+            display: inline-block; padding: 0.9rem 2.8rem; border: 1px solid rgba(255,255,255,0.8);
+            color: #FFF; text-decoration: none; letter-spacing: 2px; font-size: 0.95rem;
+            background: rgba(255,255,255,0.08); backdrop-filter: blur(4px); transition: var(--transition);
+        }
+        .btn-start:hover { background: var(--bg-cream); color: var(--text-dark); border-color: var(--bg-cream); }
 
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            filter: brightness(0.75);
-            transform: scale(1.05);
-            transition: transform 0.1s ease-out;
-        }
+        .footer { background-color: var(--text-dark); color: var(--bg-khaki); padding: 4rem 10% 2rem; text-align: center; }
+        .footer-tagline { font-size: 1.4rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .footer-divider { width: 50px; height: 1px; background-color: var(--accent-warm); margin: 0 auto 1.5rem; opacity: 0.5; }
+        .footer-copy { font-size: 0.85rem; color: rgba(239, 235, 228, 0.6); }
 
-        .hero-content {
-            color: #FFF;
-            max-width: 800px;
-            animation: fadeInBlur 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            color: var(--bg-khaki);
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-        }
-
-        .btn-explore {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            color: #FFF;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(4px);
-            border-radius: 2px;
-        }
-
-        .btn-explore:hover {
-            background: var(--bg-cream);
-            color: var(--text-dark);
-            border-color: var(--bg-cream);
-        }
-
-        /* ================= 共享组件：通用板块与进入动画 ================= */
-        .section {
-            padding: 7rem 10%;
-        }
-
-        .section-khaki {
-            background-color: var(--bg-khaki);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-subtitle {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* ================= 卡片与网格布局 ================= */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .card {
-            background: var(--bg-cream);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition-smooth);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .card-img-wrapper {
-            overflow: hidden;
-            height: 260px;
-        }
-
-        .card-img-wrapper img:hover {
-            transform: scale(1.05);
-            filter: brightness(1.03);
-        }
-
-        .card-content {
-            padding: 2rem;
-        }
-
-        .card-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: var(--text-dark);
-        }
-
-        .card-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* ================= 共享组件：Footer ================= */
-        .footer {
-            background-color: var(--text-dark);
-            color: var(--bg-khaki);
-            padding: 4rem 10% 2rem;
-            text-align: center;
-        }
-
-        .footer-tagline {
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-        }
-
-        .footer-divider {
-            width: 60px;
-            height: 1px;
-            background-color: var(--accent-warm);
-            margin: 0 auto 2rem;
-            opacity: 0.5;
-        }
-
-        .footer-copy {
-            font-size: 0.85rem;
-            color: rgba(239, 235, 228, 0.6);
-            letter-spacing: 1px;
-        }
-
-        /* ================= 动画定义与响应式适配 ================= */
-        @keyframes fadeInBlur {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-                filter: blur(5px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                filter: blur(0);
-            }
-        }
-
-        @media (max-width: 900px) {
-            .grid-3 { grid-template-columns: repeat(2, 1fr); }
-            .hero-title { font-size: 2.5rem; }
-        }
-
-        @media (max-width: 768px) {
-            .grid-3 { grid-template-columns: 1fr; }
-            .mobile-toggle { display: flex; }
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: var(--bg-cream);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: var(--transition-smooth);
-                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-            }
-            .nav-links.active { right: 0; }
-            .nav-links a { color: var(--text-dark) !important; font-size: 1.1rem; }
-            .hero-title { font-size: 2rem; }
-        }
+        @keyframes fadeInBlur { from { opacity: 0; transform: translateY(20px); filter: blur(5px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
     </style>
 </head>
 <body>
-
-    <!-- 导航栏 -->
     <nav class="navbar" id="navbar">
-        <a href="index.html" class="nav-logo">TUSCANY</a>
-        <div class="mobile-toggle" id="mobile-toggle">
-            <span></span><span></span><span></span>
-        </div>
-        <ul class="nav-links" id="nav-links">
+        <a href="index.html" class="nav-logo">Welcome to Tuscany</a>
+        <ul class="nav-links">
             <li><a href="index.html" class="active">首页</a></li>
-            <li><a href="overview.html">网页概览</a></li>
-            <li><a href="cities.html">游览路线</a></li>
-            <li><a href="art.html">艺术文化</a></li>
+            <li><a href="overview.html">网站总览</a></li>
+            <li><a href="cities.html">旅行行程</a></li>
+            <li><a href="art.html">文化艺术</a></li>
             <li><a href="food.html">美食美酒</a></li>
             <li><a href="events.html">特色活动</a></li>
         </ul>
     </nav>
 
-    <!-- Hero 落地页 -->
     <section class="hero">
-        <!-- [IMAGE PLACEHOLDER] 建议尺寸 1920x1080，托斯卡纳田园全景图片 -->
-        <img src="https://images.unsplash.com/photo-1541370976299-4d24ebbc9077?q=80&w=1920&auto=format&fit=crop" alt="Tuscany Landscape" class="hero-bg" id="hero-bg">
+        <!-- [IMAGE PLACEHOLDER] 托斯卡纳风光全景背景图 -->
+        <img src="https://images.unsplash.com/photo-1541370976299-4d24ebbc9077?q=80&w=1920&auto=format&fit=crop" alt="Tuscany" class="hero-bg">
         <div class="hero-content">
-            <p class="hero-subtitle">Your Journey Begins Here</p>
-            <h1 class="hero-title">探索托斯卡纳的日光、庄园与古老时光</h1>
-            <a href="overview.html" class="btn-explore">开启旅程</a>
+            <p class="hero-tag">Welcome to Tuscany</p>
+            <h1 class="hero-title">托斯卡纳</h1>
+            <p class="hero-desc">艺术、田园、美酒与慢生活，你的意大利之旅从这里开始</p>
+            <a href="overview.html" class="btn-start">开始探索</a>
         </div>
     </section>
 
-    <!-- 精选预览区 -->
-    <section class="section">
-        <div class="section-header fade-in">
-            <h2 class="section-title">经典体验</h2>
-            <p class="section-subtitle">Tuscany Highlights</p>
-        </div>
-        <div class="grid-3">
-            <div class="card fade-in">
-                <div class="card-img-wrapper">
-                    <!-- [IMAGE PLACEHOLDER] 建议尺寸 800x600，古城路线图 -->
-                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=800&auto=format&fit=crop" alt="Ancient Cities">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">古城与游览路线</h3>
-                    <p class="card-desc">漫步翡冷翠的石板路，探访圣吉米尼亚诺的高塔，寻找穿越时空的意式风情。</p>
-                </div>
-            </div>
-            <div class="card fade-in">
-                <div class="card-img-wrapper">
-                    <!-- [IMAGE PLACEHOLDER] 建议尺寸 800x600，葡萄园与美酒 -->
-                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop" alt="Tuscan Wine">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">美食与基安蒂酒庄</h3>
-                    <p class="card-desc">在微醺的夕阳下品尝基安蒂红酒，体验最纯粹的托斯卡纳慢食生活。</p>
-                </div>
-            </div>
-            <div class="card fade-in">
-                <div class="card-img-wrapper">
-                    <!-- [IMAGE PLACEHOLDER] 建议尺寸 800x600，文艺复兴艺术 -->
-                    <img src="https://images.unsplash.com/photo-1576016770956-debb63d92058?q=80&w=800&auto=format&fit=crop" alt="Art & Culture">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">艺术与文艺复兴</h3>
-                    <p class="card-desc">走进大师辈出的艺术摇篮，感悟每一个教堂与博物馆中的历史沉淀。</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
     <footer class="footer">
         <p class="footer-tagline">Tuscany — Where time stands still.</p>
         <div class="footer-divider"></div>
         <p class="footer-copy">&copy; 2026 Welcome to Tuscany. All Rights Reserved.</p>
     </footer>
 
-    <!-- 全局 JS 交互脚本 -->
     <script>
-        // 导航栏滚动效果
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // 首屏视差效果
-        const heroBg = document.getElementById('hero-bg');
-        if (heroBg) {
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                heroBg.style.transform = `scale(1.05) translateY(${scrolled * 0.3}px)`;
-            });
-        }
-
-        // 视口淡入动画 (Intersection Observer)
-        const observerOptions = { threshold: 0.15 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // 移动端菜单切换
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const navLinks = document.getElementById('nav-links');
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
         });
     </script>
 </body>
