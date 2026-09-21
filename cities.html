@@ -3,151 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>游览路线 | 托斯卡纳 Welcome to Tuscany</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>旅行行程 | 托斯卡纳 Welcome to Tuscany</title>
 <style>
-:root {
-  --cream:      #F7F1E4;
-  --cream-deep: #EFE6D2;
-  --khaki:      #D8C6A0;
-  --ink:        #3C3223;
-  --ink-soft:   #766B54;
-  --brand-red:  #C1594E;
-  --gold:       #A97F45;
-  --white:      #FFFDF8;
-  --radius:     6px;
-  --nav-h:      74px;
-  --shadow-soft: 0 6px 20px rgba(60,50,35,0.08);
-  --shadow-deep: 0 16px 36px rgba(60,50,35,0.15);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family: "Noto Sans SC", sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.8;
-  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAJ1A4QDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAQIAAwQFBv/EADYQAAEEAQMDAwMDAwQDAQEBAQEAAhEhMRJBUQNhcSKBkQQyoROxwULR4QVS8PEUI2JyM4IV/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAjEQEBAQADAQABBQEBAQAAAAAAARECITFBUQMSMmFxQiIE/9oADAMBADrawing=");
-}
-a{text-decoration:none;color:inherit;}
-ul{list-style:none;}
-.container{max-width:1200px;margin:0 auto;padding:0 24px;}
-.section{padding:100px 0 80px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background-color: #F7F1E4;
+    color: #3C3223;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a{text-decoration:none;color:inherit;}
+  
+  .header{
+    position: fixed;
+    top:0; left:0; right:0;
+    height: 60px;
+    background: rgba(247, 241, 228, 0.95);
+    border-bottom: 1px solid #D8C6A0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-list{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .nav-link{
+    font-size: 16px;
+    color: #3C3223;
+    font-weight: 500;
+    padding: 5px 0;
+  }
+  .nav-link.active{
+    color: #C1594E;
+    border-bottom: 2px solid #C1594E;
+  }
 
-.header{
-  height: var(--nav-h); position: fixed; top:0; left:0; right:0; z-index: 1000;
-  background: rgba(247, 241, 228, 0.94); backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--khaki);
-}
-.header .container{display: flex; justify-content: space-between; align-items: center; height: 100%;}
-.logo{font-size: 20px; font-weight: 700; font-family: 'Noto Serif SC', serif;}
-.nav-list{display: flex; gap: 28px;}
-.nav-link{font-size: 15px; transition: color 0.3s;}
-.nav-link:hover, .nav-link.active{color: var(--brand-red);}
-.mobile-toggle{display: none; font-size: 24px; background: none; border: none;}
+  .main-content{
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .page-image{
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    display: block;
+  }
 
-.page-title{font-size: 36px; text-align: center; margin-bottom: 12px; font-family: 'Noto Serif SC', serif;}
-.subtitle-line{width: 40px; height: 2px; background: var(--gold); margin: 12px auto 40px;}
-
-.grid-2{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 32px;
-}
-.card{
-  background: var(--white); border-radius: var(--radius); overflow: hidden;
-  border: 1px solid var(--khaki); box-shadow: var(--shadow-soft);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-deep); }
-.card-img-wrapper{ width: 100%; height: 240px; overflow: hidden; background: var(--cream-deep); }
-.card-img{ width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.card:hover .card-img{ transform: scale(1.04); }
-.card-body{ padding: 24px; }
-.card-title{ font-size: 20px; margin-bottom: 10px; font-family: 'Noto Serif SC', serif; }
-.card-text{ font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
-
-.footer{background: var(--ink); color: var(--cream); padding: 50px 0; text-align: center; font-size: 14px;}
-.footer-line{width: 60px; height: 1px; background: var(--gold); margin: 20px auto; opacity: 0.5;}
-
-.fade-in-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.fade-in-up.visible { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 768px) {
-  .mobile-toggle{ display: block; }
-  .nav-list{ display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--cream); flex-direction: column; padding: 20px; gap: 16px; border-bottom: 1px solid var(--khaki); }
-  .nav-list.active{ display: flex; }
-}
+  .footer{
+    background: #3C3223;
+    color: #F7F1E4;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #D8C6A0;
+  }
 </style>
 </head>
 <body>
+
   <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo">Tuscany | 托斯卡纳</a>
-      <button class="mobile-toggle" id="mobileToggle">☰</button>
-      <nav>
-        <ul class="nav-list" id="navList">
-          <li><a href="index.html" class="nav-link">首页</a></li>
-          <li><a href="overview.html" class="nav-link">网页概览</a></li>
-          <li><a href="cities.html" class="nav-link active">游览路线</a></li>
-          <li><a href="art.html" class="nav-link">艺术文化</a></li>
-          <li><a href="food.html" class="nav-link">美食美酒</a></li>
-          <li><a href="events.html" class="nav-link">特色活动</a></li>
-        </ul>
-      </nav>
-    </div>
+    <ul class="nav-list">
+      <li><a href="index.html" class="nav-link">首页</a></li>
+      <li><a href="overview.html" class="nav-link">网站总览</a></li>
+      <li><a href="cities.html" class="nav-link active">旅行行程</a></li>
+      <li><a href="art.html" class="nav-link">文化艺术</a></li>
+      <li><a href="food.html" class="nav-link">美食美酒</a></li>
+      <li><a href="events.html" class="nav-link">特色活动</a></li>
+    </ul>
   </header>
 
-  <section class="section">
-    <div class="container">
-      <h1 class="page-title fade-in-up">游览路线</h1>
-      <div class="subtitle-line fade-in-up"></div>
-
-      <div class="grid-2">
-        <div class="card fade-in-up">
-          <div class="card-img-wrapper">
-            <!-- 图片占位说明：游览路线-佛罗伦萨路线 -->
-            <img src="https://images.unsplash.com/photo-1534445867742-43195f401b6c?auto=format&fit=crop&w=800&q=80" alt="佛罗伦萨" class="card-img">
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">佛罗伦萨经典艺术线</h3>
-            <p class="card-text">穿行于乌菲兹美术馆、乌菲兹桥与圣母百花大教堂之间，感受文艺复兴核心之美的深刻震撼。</p>
-          </div>
-        </div>
-
-        <div class="card fade-in-up">
-          <div class="card-img-wrapper">
-            <!-- 图片占位说明：游览路线-奥尔恰谷乡村线 -->
-            <img src="https://images.unsplash.com/photo-1541370976299-4d24ebbcbe0c?auto=format&fit=crop&w=800&q=80" alt="奥尔恰谷" class="card-img">
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">奥尔恰谷田园自驾线</h3>
-            <p class="card-text">沿途欣赏连绵丘陵、丝柏树大道与古老庄园，是体验托斯卡纳风光的最经典路线。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main class="main-content">
+    <!-- 图片占位：旅行行程/地图路线页截屏图片 -->
+    <img src="https://images.unsplash.com/photo-1541370976299-4d24ebbcbe0c?auto=format&fit=crop&w=1200&q=80" alt="托斯卡纳旅行行程路线图" class="page-image">
+  </main>
 
   <footer class="footer">
-    <div class="container">
-      <p class="serif-font" style="font-size: 16px;">Tuscany | 慢生活与艺术之乡</p>
-      <div class="footer-line"></div>
-      <p>&copy; 2026 托斯卡纳 Welcome to Tuscany. All Rights Reserved.</p>
-    </div>
+    <p>Welcome to Tuscany | 托斯卡纳</p>
+    <p style="margin-top: 8px; opacity: 0.7;">&copy; 2026 保留所有权利</p>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('mobileToggle').addEventListener('click', () => {
-        document.getElementById('navList').classList.toggle('active');
-      });
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-    });
-  </script>
 </body>
 </html>
