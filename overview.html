@@ -1,58 +1,140 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网站总览 - 托斯卡纳</title>
-    <style>
-        /* 继承主样式基础 */
-        :root { --bg-cream: #fbf8f3; --bg-khaki: #f4eee0; --text-dark: #3a322d; --text-muted: #726659; --accent-brown: #8c6d53; --accent-terracotta: #ab6b51; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { background: var(--bg-cream); color: var(--text-dark); font-family: "Georgia", "Noto Serif SC", serif; line-height: 1.8; }
-        .header-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(251,248,243,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-logo { font-weight: bold; color: var(--accent-brown); text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); }
-        .nav-links a.active { color: var(--accent-terracotta); }
-        
-        .main-container { padding: 140px 20px 80px 20px; max-width: 1000px; margin: 0 auto; }
-        .intro-box { background: var(--bg-khaki); padding: 50px; border-radius: 4px; text-align: center; margin-bottom: 50px; }
-        .intro-chapter { font-size: 0.9rem; color: var(--accent-terracotta); letter-spacing: 1.5px; }
-        .intro-title { font-size: 1.8rem; margin: 15px 0; font-weight: normal; }
-        .intro-tags { color: var(--accent-brown); letter-spacing: 2px; font-size: 1.1rem; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网页概览 | 托斯卡纳 Welcome to Tuscany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* 复用全局核心变量 */
+:root {
+  --cream:      #F7F1E4;
+  --cream-deep: #EFE6D2;
+  --khaki:      #D8C6A0;
+  --khaki-deep: #C6AD80;
+  --ink:        #3C3223;
+  --ink-soft:   #766B54;
+  --brand-red:  #C1594E;
+  --gold:       #A97F45;
+  --white:      #FFFDF8;
+  --radius:     6px;
+  --nav-h:      74px;
+  --shadow-soft: 0 6px 20px rgba(60,50,35,0.08);
+  --shadow-deep: 0 16px 36px rgba(60,50,35,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: "Noto Sans SC", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.8;
+  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAJ1A4QDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAQIAAwQFBv/EADYQAAEEAQMDAwMDAwQDAQEBAQEAAhEhMRJBUQNhcSKBkQQyoROxwULR4QVS8PEUI2JyM4IV/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAjEQEBAQADAQABBQEBAQAAAAAAARECITFBUQMSMmFxQiIE/9oADAMBADrawing=");
+}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section{padding:100px 0 80px;}
 
-        .poetic-section { text-align: center; margin: 60px 0; font-size: 1.2rem; color: var(--text-muted); }
+/* 导航 */
+.header{
+  height: var(--nav-h); position: fixed; top:0; left:0; right:0; z-index: 1000;
+  background: rgba(247, 241, 228, 0.94); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--khaki);
+}
+.header .container{display: flex; justify-content: space-between; align-items: center; height: 100%;}
+.logo{font-size: 20px; font-weight: 700; font-family: 'Noto Serif SC', serif;}
+.nav-list{display: flex; gap: 28px;}
+.nav-link{font-size: 15px; transition: color 0.3s;}
+.nav-link:hover, .nav-link.active{color: var(--brand-red);}
+.mobile-toggle{display: none; font-size: 24px; background: none; border: none;}
 
-        .footer { background-color: var(--bg-khaki); padding: 30px; text-align: center; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); }
-    </style>
+/* 内容板块 */
+.page-title{font-size: 36px; text-align: center; margin-bottom: 12px; font-family: 'Noto Serif SC', serif;}
+.subtitle-line{width: 40px; height: 2px; background: var(--gold); margin: 12px auto 40px;}
+
+.overview-card{
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--khaki);
+  padding: 40px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 30px;
+}
+.overview-title{font-size: 22px; margin-bottom: 16px; font-family: 'Noto Serif SC', serif; color: var(--brand-red);}
+
+.footer{background: var(--ink); color: var(--cream); padding: 50px 0; text-align: center; font-size: 14px;}
+.footer-line{width: 60px; height: 1px; background: var(--gold); margin: 20px auto; opacity: 0.5;}
+
+.fade-in-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .mobile-toggle{ display: block; }
+  .nav-list{ display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--cream); flex-direction: column; padding: 20px; gap: 16px; border-bottom: 1px solid var(--khaki); }
+  .nav-list.active{ display: flex; }
+}
+</style>
 </head>
 <body>
-    <nav class="header-nav">
-        <a href="index.html" class="nav-logo">Tuscany</a>
-        <ul class="nav-links">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="overview.html" class="active">网站总览</a></li>
-            <li><a href="cities.html">旅行行程</a></li>
-            <li><a href="art.html">文化艺术</a></li>
-            <li><a href="food.html">美食美酒</a></li>
-            <li><a href="events.html">特色活动</a></li>
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">Tuscany | 托斯卡纳</a>
+      <button class="mobile-toggle" id="mobileToggle">☰</button>
+      <nav>
+        <ul class="nav-list" id="navList">
+          <li><a href="index.html" class="nav-link">首页</a></li>
+          <li><a href="overview.html" class="nav-link active">网页概览</a></li>
+          <li><a href="cities.html" class="nav-link">游览路线</a></li>
+          <li><a href="art.html" class="nav-link">艺术文化</a></li>
+          <li><a href="food.html" class="nav-link">美食美酒</a></li>
+          <li><a href="events.html" class="nav-link">特色活动</a></li>
         </ul>
-    </nav>
+      </nav>
+    </div>
+  </header>
 
-    <main class="main-container">
-        <div class="intro-box">
-            <p class="intro-chapter">Chapter 01:</p>
-            <h2 class="intro-title">四大板块，带你读懂托斯卡纳的路线、味道与风光</h2>
-            <p class="intro-tags">路线·饮食·文化·活动</p>
-        </div>
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title fade-in-up">网页概览</h1>
+      <div class="subtitle-line fade-in-up"></div>
 
-        <div class="poetic-section">
-            <p>四季流转，<br>邀你邂逅托斯卡纳的晴日、<br>山海与诗意。</p>
-        </div>
-    </main>
+      <div class="overview-card fade-in-up">
+        <h2 class="overview-title">关于此站点</h2>
+        <p>本站点旨在展示意大利托斯卡纳大区的自然风光、历史遗产、美食美酒与慢生活体验。全站采用暖米白与低饱和复古棕配色，呈现优雅文艺的视觉效果。</p>
+      </div>
 
-    <footer class="footer">
-        <p>TUSCANY • 网站总览</p>
-    </footer>
+      <div class="overview-card fade-in-up">
+        <h2 class="overview-title">核心板块索引</h2>
+        <ul style="padding-left: 20px; line-height: 2;">
+          <li><strong>游览路线</strong>：探索佛罗伦萨、锡耶纳、比萨等名城的经典游览导览。</li>
+          <li><strong>艺术文化</strong>：走进文艺复兴的发源地，感受建筑与博物馆的艺术积淀。</li>
+          <li><strong>美食美酒</strong>：领略 Chianti 葡萄酒与托斯卡纳地道美馔的独特魅力。</li>
+          <li><strong>特色活动</strong>：了解传统赛马节与四季田园活动的丰富体验。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="serif-font" style="font-size: 16px;">Tuscany | 慢生活与艺术之乡</p>
+      <div class="footer-line"></div>
+      <p>&copy; 2026 托斯卡纳 Welcome to Tuscany. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('mobileToggle').addEventListener('click', () => {
+        document.getElementById('navList').classList.toggle('active');
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
