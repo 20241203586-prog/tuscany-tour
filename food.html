@@ -4,153 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>美食美酒 | 托斯卡纳 Welcome to Tuscany</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --cream:      #F7F1E4;
-  --cream-deep: #EFE6D2;
-  --khaki:      #D8C6A0;
-  --ink:        #3C3223;
-  --ink-soft:   #766B54;
-  --brand-red:  #C1594E;
-  --gold:       #A97F45;
-  --white:      #FFFDF8;
-  --radius:     6px;
-  --nav-h:      74px;
-  --shadow-soft: 0 6px 20px rgba(60,50,35,0.08);
-  --shadow-deep: 0 16px 36px rgba(60,50,35,0.15);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family: "Noto Sans SC", sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.8;
-  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAJ1A4QDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAQIAAwQFBv/EADYQAAEEAQMDAwMDAwQDAQEBAQEAAhEhMRJBUQNhcSKBkQQyoROxwULR4QVS8PEUI2JyM4IV/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAjEQEBAQADAQABBQEBAQAAAAAAARECITFBUQMSMmFxQiIE/9oADAMBADrawing=");
-}
-a{text-decoration:none;color:inherit;}
-ul{list-style:none;}
-.container{max-width:1200px;margin:0 auto;padding:0 24px;}
-.section{padding:100px 0 80px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background-color: #F7F1E4;
+    color: #3C3223;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a{text-decoration:none;color:inherit;}
+  
+  .header{
+    position: fixed;
+    top:0; left:0; right:0;
+    height: 60px;
+    background: rgba(247, 241, 228, 0.95);
+    border-bottom: 1px solid #D8C6A0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-list{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .nav-link{
+    font-size: 16px;
+    color: #3C3223;
+    font-weight: 500;
+    padding: 5px 0;
+  }
+  .nav-link.active{
+    color: #C1594E;
+    border-bottom: 2px solid #C1594E;
+  }
 
-.header{
-  height: var(--nav-h); position: fixed; top:0; left:0; right:0; z-index: 1000;
-  background: rgba(247, 241, 228, 0.94); backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--khaki);
-}
-.header .container{display: flex; justify-content: space-between; align-items: center; height: 100%;}
-.logo{font-size: 20px; font-weight: 700; font-family: 'Noto Serif SC', serif;}
-.nav-list{display: flex; gap: 28px;}
-.nav-link{font-size: 15px; transition: color 0.3s;}
-.nav-link:hover, .nav-link.active{color: var(--brand-red);}
-.mobile-toggle{display: none; font-size: 24px; background: none; border: none;}
+  .main-content{
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .page-image{
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    display: block;
+  }
 
-.page-title{font-size: 36px; text-align: center; margin-bottom: 12px; font-family: 'Noto Serif SC', serif;}
-.subtitle-line{width: 40px; height: 2px; background: var(--gold); margin: 12px auto 40px;}
-
-.food-grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
-}
-.food-card{
-  background: var(--white);
-  border: 1px solid var(--khaki);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.food-card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-deep); }
-.food-img-wrapper{ width: 100%; height: 220px; overflow: hidden; background: var(--cream-deep); }
-.food-img{ width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.food-card:hover .food-img{ transform: scale(1.04); }
-.food-card-body{ padding: 24px; }
-.food-card-title{ font-size: 20px; margin-bottom: 10px; font-family: 'Noto Serif SC', serif; }
-.food-card-text{ font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
-
-.footer{background: var(--ink); color: var(--cream); padding: 50px 0; text-align: center; font-size: 14px;}
-.footer-line{width: 60px; height: 1px; background: var(--gold); margin: 20px auto; opacity: 0.5;}
-
-.fade-in-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.fade-in-up.visible { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 768px) {
-  .mobile-toggle{ display: block; }
-  .nav-list{ display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--cream); flex-direction: column; padding: 20px; gap: 16px; border-bottom: 1px solid var(--khaki); }
-  .nav-list.active{ display: flex; }
-}
+  .footer{
+    background: #3C3223;
+    color: #F7F1E4;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #D8C6A0;
+  }
 </style>
 </head>
 <body>
+
   <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo">Tuscany | 托斯卡纳</a>
-      <button class="mobile-toggle" id="mobileToggle">☰</button>
-      <nav>
-        <ul class="nav-list" id="navList">
-          <li><a href="index.html" class="nav-link">首页</a></li>
-          <li><a href="overview.html" class="nav-link">网页概览</a></li>
-          <li><a href="cities.html" class="nav-link">游览路线</a></li>
-          <li><a href="art.html" class="nav-link">艺术文化</a></li>
-          <li><a href="food.html" class="nav-link active">美食美酒</a></li>
-          <li><a href="events.html" class="nav-link">特色活动</a></li>
-        </ul>
-      </nav>
-    </div>
+    <ul class="nav-list">
+      <li><a href="index.html" class="nav-link">首页</a></li>
+      <li><a href="overview.html" class="nav-link">网站总览</a></li>
+      <li><a href="cities.html" class="nav-link">旅行行程</a></li>
+      <li><a href="art.html" class="nav-link">文化艺术</a></li>
+      <li><a href="food.html" class="nav-link active">美食美酒</a></li>
+      <li><a href="events.html" class="nav-link">特色活动</a></li>
+    </ul>
   </header>
 
-  <section class="section">
-    <div class="container">
-      <h1 class="page-title fade-in-up">美食美酒</h1>
-      <div class="subtitle-line fade-in-up"></div>
-
-      <div class="food-grid">
-        <div class="food-card fade-in-up">
-          <div class="food-img-wrapper">
-            <!-- 图片占位说明：美食美酒-葡萄酒图 -->
-            <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" alt="红酒" class="food-img">
-          </div>
-          <div class="food-card-body">
-            <h3 class="food-card-title">基安蒂古典红酒 (Chianti Classico)</h3>
-            <p class="food-card-text">采用经典桑娇维塞（Sangiovese）葡萄酿造，带有独特的紫罗兰与果香，是托斯卡纳的代表风味。</p>
-          </div>
-        </div>
-
-        <div class="food-card fade-in-up">
-          <div class="food-img-wrapper">
-            <!-- 图片占位说明：美食美酒-橄榄油与风味美食 -->
-            <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80" alt="托斯卡纳美食" class="food-img">
-          </div>
-          <div class="food-card-body">
-            <h3 class="food-card-title">地道乡村美食与纯正橄榄油</h3>
-            <p class="food-card-text">从著名的佛罗伦萨T骨牛排到纯正的冷压初榨橄榄油，展现出最朴素真挚的土地风味。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main class="main-content">
+    <!-- 图片占位：美食美酒页截屏图片 -->
+    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80" alt="托斯卡纳美食美酒设计图" class="page-image">
+  </main>
 
   <footer class="footer">
-    <div class="container">
-      <p class="serif-font" style="font-size: 16px;">Tuscany | 慢生活与艺术之乡</p>
-      <div class="footer-line"></div>
-      <p>&copy; 2026 托斯卡纳 Welcome to Tuscany. All Rights Reserved.</p>
-    </div>
+    <p>Welcome to Tuscany | 托斯卡纳</p>
+    <p style="margin-top: 8px; opacity: 0.7;">&copy; 2026 保留所有权利</p>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('mobileToggle').addEventListener('click', () => {
-        document.getElementById('navList').classList.toggle('active');
-      });
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-    });
-  </script>
 </body>
 </html>
