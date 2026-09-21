@@ -1,115 +1,153 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>旅行行程 - 托斯卡纳</title>
-    <style>
-        :root { --bg-cream: #fbf8f3; --bg-khaki: #f4eee0; --text-dark: #3a322d; --text-muted: #726659; --accent-brown: #8c6d53; --accent-terracotta: #ab6b51; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { background: var(--bg-cream); color: var(--text-dark); font-family: "Georgia", "Noto Serif SC", serif; line-height: 1.8; }
-        
-        .header-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; background: rgba(251,248,243,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-logo { font-weight: bold; color: var(--accent-brown); text-decoration: none; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-dark); }
-        .nav-links a.active { color: var(--accent-terracotta); }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游览路线 | 托斯卡纳 Welcome to Tuscany</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:      #F7F1E4;
+  --cream-deep: #EFE6D2;
+  --khaki:      #D8C6A0;
+  --ink:        #3C3223;
+  --ink-soft:   #766B54;
+  --brand-red:  #C1594E;
+  --gold:       #A97F45;
+  --white:      #FFFDF8;
+  --radius:     6px;
+  --nav-h:      74px;
+  --shadow-soft: 0 6px 20px rgba(60,50,35,0.08);
+  --shadow-deep: 0 16px 36px rgba(60,50,35,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: "Noto Sans SC", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.8;
+  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAJ1A4QDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAQIAAwQFBv/EADYQAAEEAQMDAwMDAwQDAQEBAQEAAhEhMRJBUQNhcSKBkQQyoROxwULR4QVS8PEUI2JyM4IV/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAjEQEBAQADAQABBQEBAQAAAAAAARECITFBUQMSMmFxQiIE/9oADAMBADrawing=");
+}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.section{padding:100px 0 80px;}
 
-        .container { padding: 120px 20px 60px 20px; max-width: 1000px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .sub-tag { color: var(--accent-terracotta); font-size: 0.9rem; letter-spacing: 2px; }
-        
-        .route-desc-box { background: var(--bg-khaki); padding: 30px; margin-bottom: 40px; border-left: 3px solid var(--accent-brown); }
-        
-        .map-placeholder { width: 100%; height: auto; background: #e8e0d0; display: flex; align-items: center; justify-content: center; margin: 20px 0 40px 0; border: 1px dashed var(--accent-brown); }
-        .map-placeholder img { max-width: 100%; height: auto; display: block; }
+.header{
+  height: var(--nav-h); position: fixed; top:0; left:0; right:0; z-index: 1000;
+  background: rgba(247, 241, 228, 0.94); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--khaki);
+}
+.header .container{display: flex; justify-content: space-between; align-items: center; height: 100%;}
+.logo{font-size: 20px; font-weight: 700; font-family: 'Noto Serif SC', serif;}
+.nav-list{display: flex; gap: 28px;}
+.nav-link{font-size: 15px; transition: color 0.3s;}
+.nav-link:hover, .nav-link.active{color: var(--brand-red);}
+.mobile-toggle{display: none; font-size: 24px; background: none; border: none;}
 
-        .city-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 30px 0; }
-        .city-card { background: #ffffff; padding: 20px; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); transition: transform 0.3s; }
-        .city-card:hover { transform: translateY(-4px); }
-        .city-card h4 { color: var(--accent-brown); margin-bottom: 10px; }
+.page-title{font-size: 36px; text-align: center; margin-bottom: 12px; font-family: 'Noto Serif SC', serif;}
+.subtitle-line{width: 40px; height: 2px; background: var(--gold); margin: 12px auto 40px;}
 
-        .pet-route { background: var(--bg-khaki); padding: 40px; border-radius: 4px; margin-top: 60px; }
-        .footer { background-color: var(--bg-khaki); padding: 30px; text-align: center; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); }
-    </style>
+.grid-2{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 32px;
+}
+.card{
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--khaki); box-shadow: var(--shadow-soft);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-deep); }
+.card-img-wrapper{ width: 100%; height: 240px; overflow: hidden; background: var(--cream-deep); }
+.card-img{ width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.card:hover .card-img{ transform: scale(1.04); }
+.card-body{ padding: 24px; }
+.card-title{ font-size: 20px; margin-bottom: 10px; font-family: 'Noto Serif SC', serif; }
+.card-text{ font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+
+.footer{background: var(--ink); color: var(--cream); padding: 50px 0; text-align: center; font-size: 14px;}
+.footer-line{width: 60px; height: 1px; background: var(--gold); margin: 20px auto; opacity: 0.5;}
+
+.fade-in-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .mobile-toggle{ display: block; }
+  .nav-list{ display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--cream); flex-direction: column; padding: 20px; gap: 16px; border-bottom: 1px solid var(--khaki); }
+  .nav-list.active{ display: flex; }
+}
+</style>
 </head>
 <body>
-    <nav class="header-nav">
-        <a href="index.html" class="nav-logo">Tuscany</a>
-        <ul class="nav-links">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="overview.html">网站总览</a></li>
-            <li><a href="cities.html" class="active">旅行行程</a></li>
-            <li><a href="art.html">文化艺术</a></li>
-            <li><a href="food.html">美食美酒</a></li>
-            <li><a href="events.html">特色活动</a></li>
-        </ul>
-    </nav>
-
+  <header class="header">
     <div class="container">
-        <div class="section-header">
-            <span class="sub-tag">经典路线</span>
-            <h2>托斯卡纳旅行路线</h2>
-        </div>
-
-        <div class="route-desc-box">
-            <p>托斯卡纳是意大利的心脏,大大小小的步道纵横全境。</p>
-            <p>拉迪奇山口、奇萨山口,是亚平宁山脉的古老山口。在这里,旅途的节奏由你的脚步掌控。</p>
-            <p>步道穿越多处自然保护区,覆盖托斯卡纳8处世界遗产。</p>
-            <p>路线东接阿雷ゾ、锡耶纳、佛罗伦萨,向西途经普拉托、皮斯托亚、卢卡、比萨,直达第勒尼安海。</p>
-            <p>艺术名城作为步道枢纽,串联起风土故事与人情。</p>
-        </div>
-
-        <h3>山海之旅: 从古城到海岸</h3>
-        <p>探索路线 | 观光路线</p>
-
-        <!-- 图像占位符标记: images/tuscany-map.png (托斯卡纳地图路线图) -->
-        <div class="map-placeholder">
-            <img src="images/tuscany-map.png" alt="托斯卡纳地图路线图 [图片占位]">
-        </div>
-
-        <div class="city-grid">
-            <div class="city-card">
-                <h4>佛罗伦萨 Firenze</h4>
-                <p>文艺复兴发源地,世界文化遗产老城。汇聚大量艺术古迹,向外衔接起伏丘陵,近郊留存古道遗迹,古城艺术与乡野田园在此交融。</p>
-            </div>
-            <div class="city-card">
-                <h4>卢卡 Lucca</h4>
-                <p>阿诺河畔历史古城,以比萨斜塔为代表,罗马式建筑遗存丰富。地貌由丘陵转为开阔沿海平原,留存古代海上共和国的历史痕迹。</p>
-            </div>
-            <div class="city-card">
-                <h4>比萨 Pisa</h4>
-                <p>中世纪城墙古城,完整保留环形古城墙。城内分布古罗马剧场遗址、古老塔楼与教堂,小城氛围静谧古朴。</p>
-            </div>
-            <div class="city-card">
-                <h4>里窝那 Livorno</h4>
-                <p>托斯卡纳地中海海港门户,拥有特色运河老城街区,以此为终点结束内陆到海岸的旅程,也可作为出海前往周边海岛的中转地。</p>
-            </div>
-        </div>
-
-        <p style="margin-top:20px;">这条线路串联托斯卡纳内陆丘陵至地中海沿岸, 全程4-5天。地貌风光层层转变,沿途可穿插短途徒步,感受千年古道人文底蕴。</p>
-
-        <!-- 宠物友好路线版块 -->
-        <div class="pet-route">
-            <span class="sub-tag">托斯卡纳 | 宠物友好路线</span>
-            <h3 style="margin: 10px 0;">宠物友好路线</h3>
-            <p><strong>带上毛孩子,解锁托斯卡纳的田园冒险!</strong></p>
-            <p>多为乡间小路,你可以带上爱犬,与毛孩子一同漫步古城镇,教堂与村落,带你沉浸式感受托斯卡纳风情。</p>
-            
-            <h4 style="margin-top: 20px; color: var(--accent-brown);">法兰奇杰纳大道: 沿着朝圣之路漫步</h4>
-            <p>法兰奇杰纳古道是欧洲最富盛名的朝圣路线之一,在托斯卡纳境内绵延近400公里。</p>
-            <p>路线上的标志性地点有坐落在山丘上、保留着历史老城的圣米尼亚托,以及以中世纪古城墙闻名的蒙特里久尼。</p>
-            <p>如果你带着爱犬出行,圣米尼亚托到甘巴西泰尔梅之间的路段风光绝美,非常值得驻足游览。</p>
-
-            <h4 style="margin-top: 20px; color: var(--accent-brown);">伊特鲁里亚之路</h4>
-            <p>伊特鲁里亚古道相对小众,你可沿着古道探访古伊特鲁里亚人的聚居地带。</p>
-            <p>路线途经富切基奥湿地、芬奇镇丘陵,一路穿行森林、乡野与农田,适合偏爱小众路线的你,带上爱犬一同徒步。</p>
-            <p>切尔拜丘陵、蒙塔尔巴诺山脊、菲耶索莱环线都是精华路段,沿途树林、葡萄园与橄榄园交织,风光绝美。</p>
-        </div>
+      <a href="index.html" class="logo">Tuscany | 托斯卡纳</a>
+      <button class="mobile-toggle" id="mobileToggle">☰</button>
+      <nav>
+        <ul class="nav-list" id="navList">
+          <li><a href="index.html" class="nav-link">首页</a></li>
+          <li><a href="overview.html" class="nav-link">网页概览</a></li>
+          <li><a href="cities.html" class="nav-link active">游览路线</a></li>
+          <li><a href="art.html" class="nav-link">艺术文化</a></li>
+          <li><a href="food.html" class="nav-link">美食美酒</a></li>
+          <li><a href="events.html" class="nav-link">特色活动</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <footer class="footer">
-        <p>TUSCANY • 旅行行程</p>
-    </footer>
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title fade-in-up">游览路线</h1>
+      <div class="subtitle-line fade-in-up"></div>
+
+      <div class="grid-2">
+        <div class="card fade-in-up">
+          <div class="card-img-wrapper">
+            <!-- 图片占位说明：游览路线-佛罗伦萨路线 -->
+            <img src="https://images.unsplash.com/photo-1534445867742-43195f401b6c?auto=format&fit=crop&w=800&q=80" alt="佛罗伦萨" class="card-img">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">佛罗伦萨经典艺术线</h3>
+            <p class="card-text">穿行于乌菲兹美术馆、乌菲兹桥与圣母百花大教堂之间，感受文艺复兴核心之美的深刻震撼。</p>
+          </div>
+        </div>
+
+        <div class="card fade-in-up">
+          <div class="card-img-wrapper">
+            <!-- 图片占位说明：游览路线-奥尔恰谷乡村线 -->
+            <img src="https://images.unsplash.com/photo-1541370976299-4d24ebbcbe0c?auto=format&fit=crop&w=800&q=80" alt="奥尔恰谷" class="card-img">
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">奥尔恰谷田园自驾线</h3>
+            <p class="card-text">沿途欣赏连绵丘陵、丝柏树大道与古老庄园，是体验托斯卡纳风光的最经典路线。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="serif-font" style="font-size: 16px;">Tuscany | 慢生活与艺术之乡</p>
+      <div class="footer-line"></div>
+      <p>&copy; 2026 托斯卡纳 Welcome to Tuscany. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('mobileToggle').addEventListener('click', () => {
+        document.getElementById('navList').classList.toggle('active');
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
