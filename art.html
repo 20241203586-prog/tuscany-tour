@@ -3,129 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>艺术文化 | 托斯卡纳 Welcome to Tuscany</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>文化艺术 | 托斯卡纳 Welcome to Tuscany</title>
 <style>
-:root {
-  --cream:      #F7F1E4;
-  --cream-deep: #EFE6D2;
-  --khaki:      #D8C6A0;
-  --ink:        #3C3223;
-  --ink-soft:   #766B54;
-  --brand-red:  #C1594E;
-  --gold:       #A97F45;
-  --white:      #FFFDF8;
-  --radius:     6px;
-  --nav-h:      74px;
-  --shadow-soft: 0 6px 20px rgba(60,50,35,0.08);
-  --shadow-deep: 0 16px 36px rgba(60,50,35,0.15);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family: "Noto Sans SC", sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.8;
-  background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAJ1A4QDAREAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAQIAAwQFBv/EADYQAAEEAQMDAwMDAwQDAQEBAQEAAhEhMRJBUQNhcSKBkQQyoROxwULR4QVS8PEUI2JyM4IV/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAjEQEBAQADAQABBQEBAQAAAAAAARECITFBUQMSMmFxQiIE/9oADAMBADrawing=");
-}
-a{text-decoration:none;color:inherit;}
-ul{list-style:none;}
-.container{max-width:1200px;margin:0 auto;padding:0 24px;}
-.section{padding:100px 0 80px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background-color: #F7F1E4;
+    color: #3C3223;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a{text-decoration:none;color:inherit;}
+  
+  .header{
+    position: fixed;
+    top:0; left:0; right:0;
+    height: 60px;
+    background: rgba(247, 241, 228, 0.95);
+    border-bottom: 1px solid #D8C6A0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-list{
+    display: flex;
+    gap: 30px;
+    list-style: none;
+  }
+  .nav-link{
+    font-size: 16px;
+    color: #3C3223;
+    font-weight: 500;
+    padding: 5px 0;
+  }
+  .nav-link.active{
+    color: #C1594E;
+    border-bottom: 2px solid #C1594E;
+  }
 
-.header{
-  height: var(--nav-h); position: fixed; top:0; left:0; right:0; z-index: 1000;
-  background: rgba(247, 241, 228, 0.94); backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--khaki);
-}
-.header .container{display: flex; justify-content: space-between; align-items: center; height: 100%;}
-.logo{font-size: 20px; font-weight: 700; font-family: 'Noto Serif SC', serif;}
-.nav-list{display: flex; gap: 28px;}
-.nav-link{font-size: 15px; transition: color 0.3s;}
-.nav-link:hover, .nav-link.active{color: var(--brand-red);}
-.mobile-toggle{display: none; font-size: 24px; background: none; border: none;}
+  .main-content{
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .page-image{
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    display: block;
+  }
 
-.page-title{font-size: 36px; text-align: center; margin-bottom: 12px; font-family: 'Noto Serif SC', serif;}
-.subtitle-line{width: 40px; height: 2px; background: var(--gold); margin: 12px auto 40px;}
-
-.art-block{
-  background: var(--white);
-  border: 1px solid var(--khaki);
-  border-radius: var(--radius);
-  padding: 36px;
-  margin-bottom: 30px;
-  box-shadow: var(--shadow-soft);
-}
-.art-block-title{font-size: 22px; margin-bottom: 12px; font-family: 'Noto Serif SC', serif; color: var(--gold);}
-
-.footer{background: var(--ink); color: var(--cream); padding: 50px 0; text-align: center; font-size: 14px;}
-.footer-line{width: 60px; height: 1px; background: var(--gold); margin: 20px auto; opacity: 0.5;}
-
-.fade-in-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.fade-in-up.visible { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 768px) {
-  .mobile-toggle{ display: block; }
-  .nav-list{ display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; background: var(--cream); flex-direction: column; padding: 20px; gap: 16px; border-bottom: 1px solid var(--khaki); }
-  .nav-list.active{ display: flex; }
-}
+  .footer{
+    background: #3C3223;
+    color: #F7F1E4;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #D8C6A0;
+  }
 </style>
 </head>
 <body>
+
   <header class="header">
-    <div class="container">
-      <a href="index.html" class="logo">Tuscany | 托斯卡纳</a>
-      <button class="mobile-toggle" id="mobileToggle">☰</button>
-      <nav>
-        <ul class="nav-list" id="navList">
-          <li><a href="index.html" class="nav-link">首页</a></li>
-          <li><a href="overview.html" class="nav-link">网页概览</a></li>
-          <li><a href="cities.html" class="nav-link">游览路线</a></li>
-          <li><a href="art.html" class="nav-link active">艺术文化</a></li>
-          <li><a href="food.html" class="nav-link">美食美酒</a></li>
-          <li><a href="events.html" class="nav-link">特色活动</a></li>
-        </ul>
-      </nav>
-    </div>
+    <ul class="nav-list">
+      <li><a href="index.html" class="nav-link">首页</a></li>
+      <li><a href="overview.html" class="nav-link">网站总览</a></li>
+      <li><a href="cities.html" class="nav-link">旅行行程</a></li>
+      <li><a href="art.html" class="nav-link active">文化艺术</a></li>
+      <li><a href="food.html" class="nav-link">美食美酒</a></li>
+      <li><a href="events.html" class="nav-link">特色活动</a></li>
+    </ul>
   </header>
 
-  <section class="section">
-    <div class="container">
-      <h1 class="page-title fade-in-up">艺术文化</h1>
-      <div class="subtitle-line fade-in-up"></div>
-
-      <div class="art-block fade-in-up">
-        <h2 class="art-block-title">文艺复兴的辉煌烙印</h2>
-        <p>托斯卡纳是文艺复兴运动的核心发源地。美第奇家族在此对艺术与科学的慷慨赞助，孕育了达芬奇、米开朗基罗、波提切利等无数闪耀人类历史的巨匠。</p>
-      </div>
-
-      <div class="art-block fade-in-up">
-        <h2 class="art-block-title">建筑与博物馆殿堂</h2>
-        <p>乌菲兹美术馆展示着《维纳斯的诞生》等无数杰作；而圣母百花大教堂的巨大穹顶，至今仍是建筑学史上的奇迹工程。</p>
-      </div>
-    </div>
-  </section>
+  <main class="main-content">
+    <!-- 图片占位：文化艺术页截屏图片 -->
+    <img src="https://images.unsplash.com/photo-1534445867742-43195f401b6c?auto=format&fit=crop&w=1200&q=80" alt="托斯卡纳文化艺术设计图" class="page-image">
+  </main>
 
   <footer class="footer">
-    <div class="container">
-      <p class="serif-font" style="font-size: 16px;">Tuscany | 慢生活与艺术之乡</p>
-      <div class="footer-line"></div>
-      <p>&copy; 2026 托斯卡纳 Welcome to Tuscany. All Rights Reserved.</p>
-    </div>
+    <p>Welcome to Tuscany | 托斯卡纳</p>
+    <p style="margin-top: 8px; opacity: 0.7;">&copy; 2026 保留所有权利</p>
   </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('mobileToggle').addEventListener('click', () => {
-        document.getElementById('navList').classList.toggle('active');
-      });
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-    });
-  </script>
 </body>
 </html>
