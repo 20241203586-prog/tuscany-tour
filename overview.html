@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网页概览 | Welcome to Tuscany</title>
+    <title>网站总览 | Welcome to Tuscany</title>
     <style>
-        /* 复用全局基础与导航样式 */
         :root {
             --bg-cream: #FDFBF7;
             --bg-khaki: #EFEBE4;
@@ -15,82 +14,91 @@
             --accent-terracotta: #C87A57;
             --white-glass: rgba(253, 251, 247, 0.9);
             --shadow-soft: 0 10px 30px rgba(44, 34, 30, 0.05);
-            --shadow-hover: 0 15px 35px rgba(44, 34, 30, 0.1);
-            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: "Playfair Display", "Georgia", "PingFang SC", "Microsoft YaHei", serif;
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
+        body { font-family: "Playfair Display", "Georgia", "PingFang SC", "Microsoft YaHei", serif; background-color: var(--bg-cream); color: var(--text-dark); line-height: 1.8; }
 
-        /* 内页标头 */
-        .page-header {
-            padding: 10rem 10% 4rem;
-            background-color: var(--bg-khaki);
-            text-align: center;
-        }
-        .page-title { font-size: 2.8rem; font-weight: 400; margin-bottom: 0.5rem; }
-        .page-subtitle { font-size: 1rem; color: var(--text-muted); letter-spacing: 2px; }
-
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
-            background: var(--white-glass); backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: var(--transition-smooth);
-        }
-        .nav-logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; color: var(--text-dark); text-decoration: none; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: var(--white-glass); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .nav-logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--text-dark); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.95rem; position: relative; padding-bottom: 4px; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background-color: var(--accent-terracotta); transition: var(--transition-smooth); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background-color: var(--accent-terracotta); transition: var(--transition); }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-        .section { padding: 5rem 10%; }
-        .content-box {
-            max-width: 800px; margin: 0 auto; background: #FFF; padding: 3rem;
-            border-radius: 4px; box-shadow: var(--shadow-soft);
-        }
-        .content-box h3 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--accent-warm); }
-        .content-box p { color: var(--text-muted); margin-bottom: 1.5rem; }
+        .header-section { padding: 9rem 10% 4rem; background-color: var(--bg-khaki); text-align: center; }
+        .chapter-title { font-size: 1rem; letter-spacing: 3px; color: var(--accent-warm); text-transform: uppercase; margin-bottom: 0.5rem; }
+        .main-title { font-size: 2.2rem; font-weight: 400; color: var(--text-dark); margin-bottom: 1rem; }
+        .sub-p { font-size: 1.1rem; color: var(--text-muted); }
+
+        .section { padding: 5rem 10%; max-width: 1200px; margin: 0 auto; }
+        .grid-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; margin-top: 2rem; }
+        .card { background: #FFF; border-radius: 4px; padding: 2.5rem; box-shadow: var(--shadow-soft); transition: var(--transition); border: 1px solid rgba(0,0,0,0.03); }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { font-size: 1.5rem; color: var(--accent-warm); margin-bottom: 0.8rem; }
+        .card p { color: var(--text-muted); font-size: 0.98rem; }
 
         .footer { background-color: var(--text-dark); color: var(--bg-khaki); padding: 4rem 10% 2rem; text-align: center; }
-        .footer-tagline { font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 2rem; }
-        .footer-divider { width: 60px; height: 1px; background-color: var(--accent-warm); margin: 0 auto 2rem; opacity: 0.5; }
+        .footer-tagline { font-size: 1.4rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .footer-divider { width: 50px; height: 1px; background-color: var(--accent-warm); margin: 0 auto 1.5rem; opacity: 0.5; }
         .footer-copy { font-size: 0.85rem; color: rgba(239, 235, 228, 0.6); }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) { .grid-cards { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="nav-logo">TUSCANY</a>
+        <a href="index.html" class="nav-logo">Welcome to Tuscany</a>
         <ul class="nav-links">
             <li><a href="index.html">首页</a></li>
-            <li><a href="overview.html" class="active">网页概览</a></li>
-            <li><a href="cities.html">游览路线</a></li>
-            <li><a href="art.html">艺术文化</a></li>
+            <li><a href="overview.html" class="active">网站总览</a></li>
+            <li><a href="cities.html">旅行行程</a></li>
+            <li><a href="art.html">文化艺术</a></li>
             <li><a href="food.html">美食美酒</a></li>
             <li><a href="events.html">特色活动</a></li>
         </ul>
     </nav>
 
-    <header class="page-header">
-        <h1 class="page-title">网页概览</h1>
-        <p class="page-subtitle">Overview of Tuscany Journey</p>
+    <header class="header-section">
+        <p class="chapter-title">Chapter 01:</p>
+        <h1 class="main-title">四大板块，带你读懂托斯卡纳的路线、味道与风光</h1>
+        <p class="sub-p">路线 · 饮食 · 文化 · 活动</p>
     </header>
 
     <section class="section">
-        <div class="content-box fade-in">
-            <!-- [IMAGE PLACEHOLDER] 建议尺寸 1200x600，托斯卡纳全景概览图 -->
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop" alt="Tuscany Overview" style="border-radius: 4px; margin-bottom: 2rem;">
-            <h3>欢迎来到托斯卡纳</h3>
-            <p>托斯卡纳（Tuscany）位于意大利中部，被称为意大利灵魂所在的地方。这里有绵延起伏的丘陵、古老的丝柏树、文艺复兴的巨匠足迹，以及令人沉醉的葡萄酒香。</p>
-            <p>本站点旨在为您呈现最完整的托斯卡纳旅行灵感，从历史名城的游览路线，到庄园里的美食美酒体验，带您深入探索这片被阳光偏爱的土地。</p>
+        <div style="text-align: center; margin-bottom: 3rem;" class="fade-in">
+            <h2 style="font-size: 1.8rem; font-weight: 400; color: var(--text-dark);">四季流转，邀你邂逅托斯卡纳的晴日、山海与诗意。</h2>
+        </div>
+
+        <div class="grid-cards">
+            <a href="cities.html" style="text-decoration: none; color: inherit;">
+                <div class="card fade-in">
+                    <h3>旅行行程</h3>
+                    <p>串联内陆丘陵与地中海海岸，古道漫步与经典观光路线。</p>
+                </div>
+            </a>
+            <a href="art.html" style="text-decoration: none; color: inherit;">
+                <div class="card fade-in">
+                    <h3>文化艺术</h3>
+                    <p>文艺复兴摇篮，大卫雕像与传奇大师米开朗基罗的艺术遗产。</p>
+                </div>
+            </a>
+            <a href="food.html" style="text-decoration: none; color: inherit;">
+                <div class="card fade-in">
+                    <h3>美食美酒</h3>
+                    <p>质朴本真风味，丁骨牛排与基安蒂等丘陵佳酿的绝妙碰撞。</p>
+                </div>
+            </a>
+            <a href="events.html" style="text-decoration: none; color: inherit;">
+                <div class="card fade-in">
+                    <h3>特色活动</h3>
+                    <p>限定盛会，复古骑行、山野音乐会与酒神节庆传统。</p>
+                </div>
+            </a>
         </div>
     </section>
 
