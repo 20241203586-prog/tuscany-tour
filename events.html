@@ -14,34 +14,36 @@
             --accent-terracotta: #C87A57;
             --white-glass: rgba(253, 251, 247, 0.9);
             --shadow-soft: 0 10px 30px rgba(44, 34, 30, 0.05);
-            --shadow-hover: 0 15px 35px rgba(44, 34, 30, 0.1);
-            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: "Playfair Display", "Georgia", "PingFang SC", "Microsoft YaHei", serif; background-color: var(--bg-cream); color: var(--text-dark); line-height: 1.8; }
 
         .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; background: var(--white-glass); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
-        .nav-logo { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; color: var(--text-dark); text-decoration: none; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 2px; color: var(--text-dark); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: var(--text-dark); text-decoration: none; font-size: 0.95rem; position: relative; padding-bottom: 4px; }
-        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background-color: var(--accent-terracotta); transition: var(--transition-smooth); }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background-color: var(--accent-terracotta); transition: var(--transition); }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 
-        .page-header { padding: 10rem 10% 4rem; background-color: var(--bg-khaki); text-align: center; }
-        .page-title { font-size: 2.8rem; font-weight: 400; margin-bottom: 0.5rem; }
-        .page-subtitle { font-size: 1rem; color: var(--text-muted); letter-spacing: 2px; }
+        .header-section { padding: 9rem 10% 4rem; background-color: var(--bg-khaki); text-align: center; }
+        .main-title { font-size: 2.2rem; font-weight: 400; color: var(--text-dark); margin-bottom: 0.5rem; }
+        .sub-p { font-size: 1.1rem; color: var(--text-muted); }
 
-        .section { padding: 5rem 10%; }
-        .event-card { background: #FFF; padding: 2.5rem; margin-bottom: 2rem; border-radius: 4px; box-shadow: var(--shadow-soft); transition: var(--transition-smooth); border-left: 4px solid var(--accent-terracotta); }
-        .event-card:hover { transform: translateX(5px); box-shadow: var(--shadow-hover); }
-        .event-date { font-size: 0.85rem; color: var(--accent-terracotta); font-weight: 600; letter-spacing: 1px; margin-bottom: 0.5rem; }
-        .event-title { font-size: 1.4rem; color: var(--text-dark); margin-bottom: 1rem; }
-        .event-desc { color: var(--text-muted); }
+        .section { padding: 4rem 10%; max-width: 1100px; margin: 0 auto; }
+        .intro-desc { font-size: 1.05rem; color: var(--text-muted); text-align: center; margin-bottom: 3rem; }
+
+        .event-card { background: #FFF; padding: 2.5rem; border-radius: 4px; box-shadow: var(--shadow-soft); margin-bottom: 2rem; border-left: 4px solid var(--accent-terracotta); transition: var(--transition); }
+        .event-card:hover { transform: translateX(5px); }
+        .event-meta { font-size: 0.85rem; color: var(--accent-terracotta); font-weight: 600; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .event-title { font-size: 1.5rem; color: var(--text-dark); margin-bottom: 0.8rem; }
+        .event-sub { font-size: 0.95rem; color: var(--accent-warm); font-weight: 500; margin-bottom: 1rem; }
+        .event-desc { font-size: 0.95rem; color: var(--text-muted); }
 
         .footer { background-color: var(--text-dark); color: var(--bg-khaki); padding: 4rem 10% 2rem; text-align: center; }
-        .footer-tagline { font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 2rem; }
-        .footer-divider { width: 60px; height: 1px; background-color: var(--accent-warm); margin: 0 auto 2rem; opacity: 0.5; }
+        .footer-tagline { font-size: 1.4rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .footer-divider { width: 50px; height: 1px; background-color: var(--accent-warm); margin: 0 auto 1.5rem; opacity: 0.5; }
         .footer-copy { font-size: 0.85rem; color: rgba(239, 235, 228, 0.6); }
 
         .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -50,33 +52,51 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="nav-logo">TUSCANY</a>
+        <a href="index.html" class="nav-logo">Welcome to Tuscany</a>
         <ul class="nav-links">
             <li><a href="index.html">首页</a></li>
-            <li><a href="overview.html">网页概览</a></li>
-            <li><a href="cities.html">游览路线</a></li>
-            <li><a href="art.html">艺术文化</a></li>
+            <li><a href="overview.html">网站总览</a></li>
+            <li><a href="cities.html">旅行行程</a></li>
+            <li><a href="art.html">文化艺术</a></li>
             <li><a href="food.html">美食美酒</a></li>
             <li><a href="events.html" class="active">特色活动</a></li>
         </ul>
     </nav>
 
-    <header class="page-header">
-        <h1 class="page-title">特色活动</h1>
-        <p class="page-subtitle">Festivals & Traditions</p>
+    <header class="header-section">
+        <h1 class="main-title">托斯卡纳限定活动</h1>
+        <p class="sub-p">山野盛会 ｜ 意式在地时光</p>
     </header>
 
     <section class="section">
+        <p class="intro-desc fade-in">漫步托斯卡纳，在节庆里解锁意式山野时光。</p>
+
         <div class="event-card fade-in">
-            <div class="event-date">JULY & AUGUST</div>
-            <h3 class="event-title">锡耶纳赛马节 (Palio di Siena)</h3>
-            <p class="event-desc">中世纪延续至今的传统马术盛会。田野广场上，各个街区的骑手身着传统服饰，开展激烈的无鞍赛马比拼。</p>
+            <div class="event-meta">基安蒂加约 ｜ 2026.10.3-4</div>
+            <h2 class="event-title">L'EROICA 复古骑行盛会</h2>
+            <div class="event-sub">白衣旧车，穿越托斯卡纳白色土路（复古骑行、乡间白路、多难度赛道）</div>
+            <p class="event-desc">简介：国际复古骑行盛会。老式单车搭配复古着装，穿行葡萄园与荒原；全年可自由骑行。</p>
         </div>
 
         <div class="event-card fade-in">
-            <div class="event-date">AUTUMN HARVEST</div>
-            <h3 class="event-title">秋季葡萄采摘与松露节</h3>
-            <p class="event-desc">每年秋季是托斯卡纳丰收的季节。走进托斯卡纳的庄园参与葡萄采摘，或前往阿赛尔莫探寻珍贵的白松露。</p>
+            <div class="event-meta">奥尔恰谷 ｜ 2026.5-12 多场次</div>
+            <h2 class="event-title">奥尔恰谷山野音乐会</h2>
+            <div class="event-sub">山野为幕，聆听奥尔恰谷自然乐章（沉浸式音乐会、世界遗产、园林歌剧）</div>
+            <p class="event-desc">简介：5-12月音乐季，在庄园、园林中演奏，古典乐与金色山丘、柏树景观相融，享受艺术与自然。</p>
+        </div>
+
+        <div class="event-card fade-in">
+            <div class="event-meta">九月最后一个周末</div>
+            <h2 class="event-title">鲁菲纳手工酒神节</h2>
+            <div class="event-sub">赴鲁菲纳酒神盛宴，重寻千年酒香传承（葡萄酒庆典、民俗巡游、基安蒂产区）</div>
+            <p class="event-desc">简介：DOCG葡萄酒产区秋日庆典，重现古老“疯狂大车”，配套展览、工坊与音乐会，探访葡萄酒博物馆。</p>
+        </div>
+
+        <div class="event-card fade-in">
+            <div class="event-meta">帕里 ｜ 2026.9.25-27</div>
+            <h2 class="event-title">帕里中世纪香肠美食节</h2>
+            <div class="event-sub">中世纪古村寻味，品尝托斯卡纳山野风味（乡村盛会、山野香气、乡土市集）</div>
+            <p class="event-desc">简介：古村美食盛会，特色野猪肉面、牛肝菌佳肴齐聚，伴现场音乐，体验意式乡村烟火。</p>
         </div>
     </section>
 
